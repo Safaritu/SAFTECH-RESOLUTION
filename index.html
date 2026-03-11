@@ -32,15 +32,15 @@
         
         .glass { 
             background: rgba(15, 23, 42, 0.7); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); 
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.05); 
         }
         
         .glass-card {
             background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
             border: 1px solid rgba(56, 189, 248, 0.1);
         }
         
@@ -187,6 +187,38 @@
             font-size: 0.8rem;
             color: #94a3b8;
         }
+
+        /* Live Demo Button Styles */
+        .live-demo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .live-demo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .tech-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #38bdf8;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
     </style>
 </head>
 <body class="leading-relaxed antialiased">
@@ -282,7 +314,7 @@
                     
                     <!-- Floating badge -->
                     <div class="absolute -top-6 -right-6 glass px-6 py-3 rounded-full border border-sky-500/20 bg-slate-900/90">
-                        <span class="text-sm font-bold">✨ 50+ businesses trusted</span>
+                        <span class="text-sm font-bold">✨ 2 Live Systems Deployed</span>
                     </div>
                 </div>
             </div>
@@ -305,59 +337,70 @@
                 <p class="text-slate-400 text-sm mt-2">Technical Support</p>
             </div>
             <div class="text-center">
-                <h3 class="text-3xl md:text-4xl font-extrabold text-white">12+</h3>
-                <p class="text-slate-400 text-sm mt-2">Live Demos</p>
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white">
+                    <a href="#demos" class="hover:text-sky-400 transition">2</a>
+                </h3>
+                <p class="text-slate-400 text-sm mt-2">
+                    <a href="#demos" class="hover:text-sky-400 transition">Live Systems</a>
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- LIVE DEMOS SECTION - NEW -->
+    <!-- LIVE DEMOS SECTION - UPDATED WITH YOUR ACTUAL LINKS -->
     <section id="demos" class="bg-slate-900/20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16">
                 <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">Try Before You Buy</span>
                 <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Live Interactive Demos</h2>
-                <p class="text-slate-400 text-lg max-w-3xl">Click, explore, and experience real software. If you like what you see, I'll build one tailored for your business.</p>
+                <p class="text-slate-400 text-lg max-w-3xl">Click, explore, and experience real software running live on the web. These are fully functional systems you can test right now!</p>
                 <div class="h-1.5 w-20 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mt-4"></div>
             </div>
             
-            <!-- Demos Grid - Modular Structure -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Demos Grid - Your 2 Live Systems -->
+            <div class="grid md:grid-cols-2 gap-8">
                 
-                <!-- DEMO 1: Chemist POS (Your Priority) -->
+                <!-- DEMO 1: Pharmacy System (First Site) -->
                 <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border-2 border-sky-500/30 hover:border-sky-400 transition-all">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Chemist POS System" 
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-sky-500/30 hover:border-sky-400 transition-all h-full">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Pharmacy Management System" 
                                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                             <div class="demo-badge">
-                                <i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE DEMO
+                                <i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE
                             </div>
-                            <!-- Try Demo Button Overlay -->
-                            <div class="absolute inset-0 flex items-center justify-center try-demo-btn">
-                                <a href="#" class="px-6 py-3 bg-sky-500 rounded-full font-bold text-white shadow-xl hover:bg-sky-600 transition-all flex items-center gap-2">
-                                    <i class="fas fa-play"></i> Try Demo
-                                </a>
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-sky-500/90 rounded-full text-xs font-bold text-white">⭐ FEATURED</span>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-bold">Chemist POS Pro</h3>
-                                <span class="px-3 py-1 bg-sky-500/20 text-sky-400 rounded-full text-xs font-bold">NEW</span>
+                        <div class="p-8">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-2xl font-bold">Pharmacy Management System</h3>
                             </div>
                             <p class="text-slate-400 text-sm mb-4">
-                                Complete pharmacy management: sales, inventory by expiry, supplier orders, and profit tracking.
+                                Complete pharmacy management with inventory, expiry tracking, supplier orders, and profit analytics. 9 fully integrated modules.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Expiry Tracking</span>
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Low Stock Alerts</span>
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Daily Reports</span>
+                                <span class="tech-tag">Expiry Tracking</span>
+                                <span class="tech-tag">Low Stock Alerts</span>
+                                <span class="tech-tag">Customer Management</span>
+                                <span class="tech-tag">Sales Reports</span>
+                                <span class="tech-tag">Supplier Orders</span>
+                                <span class="tech-tag">Debt Tracking</span>
                             </div>
-                            <div class="flex justify-between items-center">
+                            <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                                <a href="https://pharmacy-system.pages.dev" target="_blank" class="live-demo-link flex-1">
+                                    <i class="fas fa-external-link-alt"></i> Launch Live Demo
+                                </a>
+                                <a href="https://github.com/Safaritu/PHARMACY" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-3 glass border border-slate-700 hover:border-sky-400 rounded-full text-sm transition-all">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-slate-800">
                                 <span class="demo-stats">
-                                    <i class="fas fa-users text-sky-400 mr-1"></i> 342 tries
+                                    <i class="fas fa-database text-sky-400 mr-1"></i> 9 Modules
                                 </span>
                                 <span class="text-sky-400 text-sm font-bold">KSH 65,000</span>
                             </div>
@@ -365,106 +408,84 @@
                     </div>
                 </div>
 
-                <!-- DEMO 2: Retail POS (Existing) -->
+                <!-- DEMO 2: Chemist Management System (Second Site) -->
                 <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border border-slate-800 hover:border-purple-400 transition-all">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Retail POS" 
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-purple-500/30 hover:border-purple-400 transition-all h-full">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Chemist Management System" 
                                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                            <div class="absolute top-4 right-4 px-3 py-1 bg-purple-500/90 rounded-full text-xs font-bold text-white">
-                                POPULAR
+                            <div class="demo-badge">
+                                <i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE
                             </div>
-                            <div class="absolute inset-0 flex items-center justify-center try-demo-btn">
-                                <a href="#" class="px-6 py-3 bg-purple-500 rounded-full font-bold text-white shadow-xl hover:bg-purple-600 transition-all flex items-center gap-2">
-                                    <i class="fas fa-play"></i> Try Demo
-                                </a>
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-purple-500/90 rounded-full text-xs font-bold text-white">🚀 NEW</span>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">Nexus Retail Safari</h3>
+                        <div class="p-8">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-2xl font-bold">Chemist Management System</h3>
+                            </div>
                             <p class="text-slate-400 text-sm mb-4">
-                                Full-featured retail POS with inventory, staff roles, and cloud backup.
+                                Advanced chemist platform with drug health monitoring, expiry alerts, customer credit tracking, and comprehensive reporting.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Inventory</span>
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Staff Access</span>
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Reports</span>
+                                <span class="tech-tag">Drug Health</span>
+                                <span class="tech-tag">Expiry Alerts</span>
+                                <span class="tech-tag">Credit Tracking</span>
+                                <span class="tech-tag">Supplier Mgmt</span>
+                                <span class="tech-tag">Analytics</span>
+                                <span class="tech-tag">Multi-store</span>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <span class="demo-stats">
-                                    <i class="fas fa-users text-purple-400 mr-1"></i> 1.2k tries
-                                </span>
-                                <span class="text-purple-400 text-sm font-bold">KSH 45,000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DEMO 3: Inventory Manager -->
-                <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border border-slate-800 hover:border-emerald-400 transition-all">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Inventory Management" 
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                            <div class="absolute inset-0 flex items-center justify-center try-demo-btn">
-                                <a href="#" class="px-6 py-3 bg-emerald-500 rounded-full font-bold text-white shadow-xl hover:bg-emerald-600 transition-all flex items-center gap-2">
-                                    <i class="fas fa-play"></i> Try Demo
+                            <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                                <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="live-demo-link flex-1" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                                    <i class="fas fa-external-link-alt"></i> Launch Live Demo
+                                </a>
+                                <a href="https://github.com/Safaritu/chemist-management-system" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-3 glass border border-slate-700 hover:border-purple-400 rounded-full text-sm transition-all">
+                                    <i class="fab fa-github"></i> Code
                                 </a>
                             </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2">StockMaster</h3>
-                            <p class="text-slate-400 text-sm mb-4">
-                                Track stock levels, get low stock alerts, and manage suppliers.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Barcode</span>
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Alerts</span>
-                                <span class="px-2 py-1 bg-slate-800 rounded text-xs text-slate-300">Suppliers</span>
-                            </div>
-                            <div class="flex justify-between items-center">
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-slate-800">
                                 <span class="demo-stats">
-                                    <i class="fas fa-users text-emerald-400 mr-1"></i> 856 tries
+                                    <i class="fas fa-chart-line text-purple-400 mr-1"></i> Health Monitor
                                 </span>
-                                <span class="text-emerald-400 text-sm font-bold">KSH 35,000</span>
+                                <span class="text-purple-400 text-sm font-bold">KSH 75,000</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- View All Demos Button -->
+            <!-- Demo Stats Bar - Updated with your actual data -->
+            <div class="mt-16 glass p-8 rounded-3xl border border-slate-800">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                    <div>
+                        <div class="text-3xl font-bold text-sky-400">2</div>
+                        <div class="text-sm text-slate-400 mt-2">Live Systems</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-purple-400">18</div>
+                        <div class="text-sm text-slate-400 mt-2">Total Modules</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-emerald-400">Free</div>
+                        <div class="text-sm text-slate-400 mt-2">To Test</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-pink-400">2hr</div>
+                        <div class="text-sm text-slate-400 mt-2">Support Response</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
             <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center gap-2 px-8 py-4 glass rounded-full border border-sky-500/30 hover:border-sky-400 transition-all group">
-                    <span>Browse All 12 Interactive Demos</span>
+                <p class="text-slate-400 mb-6">Want a customized version for your specific business needs?</p>
+                <a href="#quote" class="inline-flex items-center gap-2 px-10 py-5 btn-primary rounded-full text-lg font-bold group">
+                    <i class="fas fa-rocket"></i> Get Your Custom System
                     <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </a>
-            </div>
-
-            <!-- Demo Stats Bar -->
-            <div class="mt-16 glass p-6 rounded-2xl border border-slate-800">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div>
-                        <div class="text-2xl font-bold text-sky-400">4,289</div>
-                        <div class="text-xs text-slate-400">Total Demo Tries</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-purple-400">12</div>
-                        <div class="text-xs text-slate-400">Active Demos</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-emerald-400">8</div>
-                        <div class="text-xs text-slate-400">Converted to Sales</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl font-bold text-pink-400">2hr</div>
-                        <div class="text-xs text-slate-400">Avg Response</div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -645,27 +666,27 @@
             </div>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1 - Chemist POS (Featured) -->
+                <!-- Project 1 - Pharmacy System -->
                 <div class="group relative rounded-3xl overflow-hidden border border-sky-500/50 hover:border-sky-400 transition-all duration-500">
-                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                         <div class="absolute top-4 left-4">
-                            <span class="px-4 py-2 bg-sky-500/90 rounded-full text-xs font-bold text-white uppercase tracking-wider">Just Launched</span>
+                            <span class="px-4 py-2 bg-sky-500/90 rounded-full text-xs font-bold text-white uppercase tracking-wider">Live</span>
                         </div>
                     </div>
                     <div class="p-8 glass">
-                        <h3 class="text-2xl font-bold mb-3">Chemist POS Pro</h3>
+                        <h3 class="text-2xl font-bold mb-3">Pharmacy Management System</h3>
                         <p class="text-slate-400 text-sm mb-6">
-                            Complete pharmacy management system with expiry tracking, supplier management, and automated low stock alerts.
+                            Complete pharmacy management with 9 modules including expiry tracking, supplier orders, and automated low stock alerts.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Expiry Tracking</span>
                             <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Supplier Orders</span>
                             <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Profit Analytics</span>
-                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Prescriptions</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Debt Management</span>
                         </div>
                         <div class="flex gap-4">
-                            <a href="#" class="inline-flex items-center text-sky-400 hover:text-sky-300 text-sm font-bold">
+                            <a href="https://pharmacy-system.pages.dev" target="_blank" class="inline-flex items-center text-sky-400 hover:text-sky-300 text-sm font-bold">
                                 Live Demo <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                             <a href="#" class="inline-flex items-center text-slate-400 hover:text-white text-sm font-bold">
@@ -675,28 +696,31 @@
                     </div>
                 </div>
                 
-                <!-- Project 2 - Nexus Retail -->
-                <div class="group relative rounded-3xl overflow-hidden border border-slate-800 hover:border-purple-500/50 transition-all duration-500">
-                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                <!-- Project 2 - Chemist Management System -->
+                <div class="group relative rounded-3xl overflow-hidden border border-purple-500/50 hover:border-purple-400 transition-all duration-500">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1586016413664-864c0dd76f53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                         <div class="absolute top-4 left-4">
-                            <span class="px-4 py-2 bg-purple-500/90 rounded-full text-xs font-bold text-white uppercase tracking-wider">Flagship</span>
+                            <span class="px-4 py-2 bg-purple-500/90 rounded-full text-xs font-bold text-white uppercase tracking-wider">New</span>
                         </div>
                     </div>
                     <div class="p-8 glass">
-                        <h3 class="text-2xl font-bold mb-3">Nexus Retail Safari</h3>
+                        <h3 class="text-2xl font-bold mb-3">Chemist Management System</h3>
                         <p class="text-slate-400 text-sm mb-6">
-                            A retail ecosystem featuring automated sales recording, role-based security, and cloud-hosted database integration.
+                            Advanced platform with drug health monitoring, expiry alerts, customer credit tracking, and comprehensive reporting.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Supabase</span>
-                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Cloudflare</span>
-                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Python</span>
-                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">JWT Auth</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Drug Health</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Expiry Alerts</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Credit Tracking</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Analytics</span>
                         </div>
                         <div class="flex gap-4">
-                            <a href="#" class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-bold">
+                            <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="inline-flex items-center text-purple-400 hover:text-purple-300 text-sm font-bold">
                                 Live Demo <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                            <a href="#" class="inline-flex items-center text-slate-400 hover:text-white text-sm font-bold">
+                                Case Study <i class="fas fa-file-alt ml-2"></i>
                             </a>
                         </div>
                     </div>
@@ -799,7 +823,8 @@
                             <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Service Category</label>
                             <select name="Service_Requested" 
                                 class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-xl outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500/50 transition-all">
-                                <option class="bg-slate-900">Chemist POS System</option>
+                                <option class="bg-slate-900">Pharmacy Management System</option>
+                                <option class="bg-slate-900">Chemist Management System</option>
                                 <option class="bg-slate-900">Retail POS (Nexus Retail)</option>
                                 <option class="bg-slate-900">System Development</option>
                                 <option class="bg-slate-900">Game Development</option>
@@ -864,10 +889,10 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl">
-                            <i class="fas fa-play-circle text-purple-400 text-xl w-8"></i>
+                            <i class="fas fa-rocket text-purple-400 text-xl w-8"></i>
                             <div>
-                                <p class="text-xs text-slate-400">Live Demos</p>
-                                <p class="font-bold"><a href="#demos" class="hover:text-sky-400">12 Interactive Demos</a></p>
+                                <p class="text-xs text-slate-400">Live Systems</p>
+                                <p class="font-bold"><a href="#demos" class="hover:text-sky-400">2 Live Demos</a></p>
                             </div>
                         </div>
                     </div>
@@ -942,6 +967,12 @@
             <!-- Copyright -->
             <div class="text-center mt-16 pt-8 border-t border-slate-800 text-slate-600 text-xs tracking-widest">
                 &copy; 2026 SAFTECH RESOLUTIONS | ALL RIGHTS RESERVED | Directed by Alex Safari
+                <div class="mt-2 text-slate-700">
+                    <span class="mx-2">•</span>
+                    <a href="https://pharmacy-system.pages.dev" target="_blank" class="hover:text-sky-400">Pharmacy System</a>
+                    <span class="mx-2">•</span>
+                    <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="hover:text-sky-400">Chemist Management</a>
+                </div>
             </div>
         </div>
     </footer>
@@ -958,12 +989,11 @@
             });
         });
 
-        // Demo tracking simulation (optional - adds realism)
-        document.querySelectorAll('.demo-card').forEach((card, index) => {
-            card.addEventListener('click', function(e) {
-                if(!e.target.closest('a')) return;
-                // Simulate tracking - in real implementation, you'd send to analytics
-                console.log(`Demo ${index + 1} clicked`);
+        // Track demo clicks
+        document.querySelectorAll('.live-demo-link').forEach((link, index) => {
+            link.addEventListener('click', function(e) {
+                console.log(`Demo ${index + 1} clicked: ${this.href}`);
+                // You could send this to Google Analytics or your tracking system
             });
         });
     </script>
