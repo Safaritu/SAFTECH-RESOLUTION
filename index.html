@@ -226,6 +226,20 @@
             border-color: rgba(236, 72, 153, 0.2);
             color: #ec4899;
         }
+
+        /* Stock Theme Tags */
+        .stock-tag {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+
+        /* Electrical Theme Tags */
+        .electrical-tag {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.2);
+            color: #f59e0b;
+        }
     </style>
 </head>
 <body class="leading-relaxed antialiased">
@@ -304,13 +318,15 @@
                             <div class="code-dot dot-red"></div>
                             <div class="code-dot dot-yellow"></div>
                             <div class="code-dot dot-green"></div>
-                            <span class="ml-auto text-xs text-slate-400">3 Live Systems</span>
+                            <span class="ml-auto text-xs text-slate-400">5 Live Systems</span>
                         </div>
                         <pre class="text-xs p-4 bg-slate-900/90"><span class="comment">// SAFTECH Ecosystem</span>
 <span class="keyword">const</span> <span class="property">solutions</span> = {
   pharmacy: <span class="string">"Live"</span>,
   chemist: <span class="string">"Live"</span>, 
-  boutique: <span class="string">"Live"</span>
+  boutique: <span class="string">"Live"</span>,
+  stock: <span class="string">"Live"</span>,
+  electrical: <span class="string">"Live"</span>
 };
 
 <span class="keyword">for</span> (let system <span class="keyword">in</span> solutions) {
@@ -320,7 +336,7 @@
                     
                     <!-- Floating badge -->
                     <div class="absolute -top-6 -right-6 glass px-6 py-3 rounded-full border border-sky-500/20 bg-slate-900/90">
-                        <span class="text-sm font-bold">✨ 3 Live Systems Deployed</span>
+                        <span class="text-sm font-bold">✨ 5 Live Systems Deployed</span>
                     </div>
                 </div>
             </div>
@@ -344,7 +360,7 @@
             </div>
             <div class="text-center">
                 <h3 class="text-3xl md:text-4xl font-extrabold text-white">
-                    <a href="#demos" class="hover:text-sky-400 transition">3</a>
+                    <a href="#demos" class="hover:text-sky-400 transition">5</a>
                 </h3>
                 <p class="text-slate-400 text-sm mt-2">
                     <a href="#demos" class="hover:text-sky-400 transition">Live Systems</a>
@@ -353,7 +369,7 @@
         </div>
     </div>
 
-    <!-- LIVE DEMOS SECTION - UPDATED WITH 3 SYSTEMS -->
+    <!-- LIVE DEMOS SECTION - UPDATED WITH 5 SYSTEMS -->
     <section id="demos" class="bg-slate-900/20">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16">
@@ -363,7 +379,7 @@
                 <div class="h-1.5 w-20 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mt-4"></div>
             </div>
             
-            <!-- Demos Grid - 3 Live Systems -->
+            <!-- Demos Grid - 5 Live Systems -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <!-- DEMO 1: Pharmacy System -->
@@ -456,7 +472,7 @@
                     </div>
                 </div>
 
-                <!-- DEMO 3: Boutique Management System (NEW) -->
+                <!-- DEMO 3: Boutique Management System -->
                 <div class="group relative demo-card">
                     <div class="glass rounded-3xl overflow-hidden border-2 border-pink-500/30 hover:border-pink-400 transition-all h-full">
                         <div class="relative h-56 overflow-hidden">
@@ -468,7 +484,7 @@
                                 <i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE
                             </div>
                             <div class="absolute top-4 left-4">
-                                <span class="px-3 py-1 bg-pink-500/90 rounded-full text-xs font-bold text-white">✨ JUST LAUNCHED</span>
+                                <span class="px-3 py-1 bg-pink-500/90 rounded-full text-xs font-bold text-white">✨ FASHION</span>
                             </div>
                         </div>
                         <div class="p-8">
@@ -482,7 +498,6 @@
                                 <span class="tech-tag boutique-tag">VIP Program</span>
                                 <span class="tech-tag boutique-tag">Size Tracking</span>
                                 <span class="tech-tag boutique-tag">Layaway</span>
-                                <span class="tech-tag boutique-tag">Returns</span>
                             </div>
                             <div class="flex flex-col sm:flex-row gap-3 mt-6">
                                 <a href="https://botique-management.pages.dev" target="_blank" class="live-demo-link flex-1" style="background: linear-gradient(135deg, #ec4899, #d946ef);">
@@ -501,17 +516,107 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- DEMO 4: Stock Management System -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-emerald-500/30 hover:border-emerald-400 transition-all h-full">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Stock Management System" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge">
+                                <i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-emerald-500/90 rounded-full text-xs font-bold text-white">📦 STOCK</span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-2xl font-bold">StockMaster</h3>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">
+                                Universal inventory management system. Track products, stock levels, suppliers, movements, and generate reports for any business.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-tag stock-tag">Multi-shop</span>
+                                <span class="tech-tag stock-tag">Stock Tracking</span>
+                                <span class="tech-tag stock-tag">Suppliers</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                                <a href="https://stock-management-inventory.pages.dev" target="_blank" class="live-demo-link flex-1" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                    <i class="fas fa-external-link-alt"></i> Launch Demo
+                                </a>
+                                <a href="https://github.com/Safaritu/stock-management" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-3 glass border border-slate-700 hover:border-emerald-400 rounded-full text-sm transition-all">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-slate-800">
+                                <span class="demo-stats">
+                                    <i class="fas fa-warehouse text-emerald-400 mr-1"></i> 9 Modules
+                                </span>
+                                <span class="text-emerald-400 text-sm font-bold">KSH 45,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DEMO 5: Electrical Management System -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-400 transition-all h-full">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Electrical Management System" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge">
+                                <i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE
+                            </div>
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-orange-500/90 rounded-full text-xs font-bold text-white">⚡ ELECTRICAL</span>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-2xl font-bold">ElectroPOS</h3>
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">
+                                Complete electrical and electronics shop management with warranty tracking, repair services, installation scheduling, and stock alerts.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-tag electrical-tag">Warranty</span>
+                                <span class="tech-tag electrical-tag">Repairs</span>
+                                <span class="tech-tag electrical-tag">Installations</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                                <a href="https://electricals-management-system.pages.dev" target="_blank" class="live-demo-link flex-1" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                                    <i class="fas fa-external-link-alt"></i> Launch Demo
+                                </a>
+                                <a href="https://github.com/Safaritu/electrical-management" target="_blank" class="inline-flex items-center justify-center gap-2 px-4 py-3 glass border border-slate-700 hover:border-orange-400 rounded-full text-sm transition-all">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-slate-800">
+                                <span class="demo-stats">
+                                    <i class="fas fa-bolt text-orange-400 mr-1"></i> 12 Modules
+                                </span>
+                                <span class="text-orange-400 text-sm font-bold">KSH 85,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Demo Stats Bar - Updated with 3 Systems -->
+            <!-- Demo Stats Bar - Updated with 5 Systems -->
             <div class="mt-16 glass p-8 rounded-3xl border border-slate-800">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
                     <div>
-                        <div class="text-3xl font-bold text-sky-400">3</div>
+                        <div class="text-3xl font-bold text-sky-400">5</div>
                         <div class="text-sm text-slate-400 mt-2">Live Systems</div>
                     </div>
                     <div>
-                        <div class="text-3xl font-bold text-purple-400">27</div>
+                        <div class="text-3xl font-bold text-purple-400">45+</div>
                         <div class="text-sm text-slate-400 mt-2">Total Modules</div>
                     </div>
                     <div>
@@ -521,6 +626,10 @@
                     <div>
                         <div class="text-3xl font-bold text-pink-400">2hr</div>
                         <div class="text-sm text-slate-400 mt-2">Support Response</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-orange-400">100%</div>
+                        <div class="text-sm text-slate-400 mt-2">Satisfaction</div>
                     </div>
                 </div>
             </div>
@@ -559,7 +668,7 @@
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Retail POS Systems</h3>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Custom-built retail software including Chemist POS, Boutique POS, and specialized inventory systems.
+                        Custom-built retail software including Chemist POS, Boutique POS, ElectroPOS, and specialized inventory systems.
                     </p>
                     <div class="flex flex-wrap gap-2">
                         <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Supabase</span>
@@ -761,7 +870,7 @@
                     <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
                         <div class="absolute top-4 left-4">
-                            <span class="px-4 py-2 bg-pink-500/90 rounded-full text-xs font-bold text-white uppercase tracking-wider">Just Launched</span>
+                            <span class="px-4 py-2 bg-pink-500/90 rounded-full text-xs font-bold text-white uppercase tracking-wider">Fashion</span>
                         </div>
                     </div>
                     <div class="p-8 glass">
@@ -775,6 +884,56 @@
                         </div>
                         <div class="flex gap-4">
                             <a href="https://botique-management.pages.dev" target="_blank" class="inline-flex items-center text-pink-400 hover:text-pink-300 text-sm font-bold">
+                                Live Demo <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 - Stock Management System -->
+                <div class="group relative rounded-3xl overflow-hidden border border-emerald-500/50 hover:border-emerald-400 transition-all duration-500">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-4 py-2 bg-emerald-500/90 rounded-full text-xs font-bold text-white uppercase tracking-wider">Stock</span>
+                        </div>
+                    </div>
+                    <div class="p-8 glass">
+                        <h3 class="text-2xl font-bold mb-3">StockMaster</h3>
+                        <p class="text-slate-400 text-sm mb-6">
+                            Universal inventory management system for any business. Track products, stock levels, suppliers, and generate reports.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Multi-shop</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Stock Tracking</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://stock-management-inventory.pages.dev" target="_blank" class="inline-flex items-center text-emerald-400 hover:text-emerald-300 text-sm font-bold">
+                                Live Demo <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 - Electrical Management System -->
+                <div class="group relative rounded-3xl overflow-hidden border border-orange-500/50 hover:border-orange-400 transition-all duration-500">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-4 py-2 bg-orange-500/90 rounded-full text-xs font-bold text-white uppercase tracking-wider">Electrical</span>
+                        </div>
+                    </div>
+                    <div class="p-8 glass">
+                        <h3 class="text-2xl font-bold mb-3">ElectroPOS</h3>
+                        <p class="text-slate-400 text-sm mb-6">
+                            Complete electrical shop management with warranty tracking, repair services, installation scheduling, and low stock alerts.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Warranty</span>
+                            <span class="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300">Repairs</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="https://electricals-management-system.pages.dev" target="_blank" class="inline-flex items-center text-orange-400 hover:text-orange-300 text-sm font-bold">
                                 Live Demo <i class="fas fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -881,11 +1040,11 @@
                                 <option class="bg-slate-900">Pharmacy Management System</option>
                                 <option class="bg-slate-900">Chemist Management System</option>
                                 <option class="bg-slate-900">Boutique Management System</option>
+                                <option class="bg-slate-900">Stock Management System</option>
+                                <option class="bg-slate-900">Electrical Management System</option>
                                 <option class="bg-slate-900">Retail POS (Nexus Retail)</option>
                                 <option class="bg-slate-900">System Development</option>
                                 <option class="bg-slate-900">Game Development</option>
-                                <option class="bg-slate-900">Web Application</option>
-                                <option class="bg-slate-900">Mobile App Development</option>
                             </select>
                         </div>
                         <div class="md:col-span-2">
@@ -946,7 +1105,7 @@
                             <i class="fas fa-rocket text-purple-400 text-xl w-8"></i>
                             <div>
                                 <p class="text-xs text-slate-400">Live Systems</p>
-                                <p class="font-bold"><a href="#demos" class="hover:text-sky-400">3 Live Demos</a></p>
+                                <p class="font-bold"><a href="#demos" class="hover:text-sky-400">5 Live Demos</a></p>
                             </div>
                         </div>
                     </div>
@@ -1028,6 +1187,10 @@
                     <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="hover:text-sky-400">Chemist</a>
                     <span class="mx-2">•</span>
                     <a href="https://botique-management.pages.dev" target="_blank" class="hover:text-pink-400">Boutique</a>
+                    <span class="mx-2">•</span>
+                    <a href="https://stock-management-inventory.pages.dev" target="_blank" class="hover:text-emerald-400">StockMaster</a>
+                    <span class="mx-2">•</span>
+                    <a href="https://electricals-management-system.pages.dev" target="_blank" class="hover:text-orange-400">ElectroPOS</a>
                 </div>
             </div>
         </div>
