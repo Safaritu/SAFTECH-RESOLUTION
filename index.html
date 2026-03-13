@@ -2,459 +2,1102 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>SAFTECH RESOLUTIONS | Full‑Scale Software Engineering</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFTECH RESOLUTIONS | Enterprise Software Engineering</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             background-color: #020617; 
             color: #f8fafc; 
             scroll-behavior: smooth; 
-            -webkit-tap-highlight-color: transparent;
         }
-        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .glass { background: rgba(15, 23, 42, 0.7); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .btn-primary { background: linear-gradient(90deg, #0ea5e9, #6366f1); transition: all 0.3s ease; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 30px -10px rgba(14, 165, 233, 0.4); }
-        section { padding: 80px 0; }
-        @media (max-width: 640px) { section { padding: 60px 0; } }
         
-        /* concept cards */
-        .concept-card {
-            transition: all 0.25s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+        .gradient-text { 
+            background: linear-gradient(90deg, #38bdf8, #818cf8); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-clip: text;
         }
-        .concept-card .inner {
-            background: rgba(15, 23, 42, 0.5);
+        
+        .glass { 
+            background: rgba(15, 23, 42, 0.7); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+        }
+        
+        .glass-card {
+            background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            height: 100%;
-            transition: all 0.2s;
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(56, 189, 248, 0.1);
         }
-        .concept-card:hover .inner {
-            border-color: #38bdf8;
-            background: rgba(30, 41, 59, 0.7);
+        
+        .btn-primary { 
+            background: linear-gradient(90deg, #0ea5e9, #6366f1); 
+            transition: all 0.3s ease; 
+        }
+        
+        .btn-primary:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 20px 30px -10px rgba(14, 165, 233, 0.4); 
+        }
+        
+        .card-hover:hover { 
+            border-color: #38bdf8; 
+            background: rgba(30, 41, 59, 0.6); 
             transform: translateY(-4px);
         }
-        .concept-badge {
-            background: linear-gradient(145deg, #0f172a, #1e293b);
-            border: 1px solid #334155;
-            color: #94a3b8;
-            font-size: 0.7rem;
-            padding: 0.25rem 1rem;
+        
+        section { 
+            padding: 100px 0; 
+        }
+        
+        .code-window {
+            background: #0b1120;
+            border-radius: 16px;
+            border: 1px solid #1e293b;
+            overflow: hidden;
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .code-dots {
+            display: flex;
+            gap: 8px;
+            padding: 16px;
+            background: #1a1f2e;
+            border-bottom: 1px solid #2d3748;
+        }
+        
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+        
+        pre {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+        
+        .keyword { color: #ff79c6; }
+        .property { color: #8be9fd; }
+        .string { color: #f1fa8c; }
+        .comment { color: #6272a4; }
+        .function { color: #50fa7b; }
+        
+        /* Image Styles */
+        .project-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .floating-badge {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Demo Card Styles */
+        .demo-card {
+            transition: all 0.3s ease;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-8px) scale(1.02);
+        }
+        
+        .demo-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            padding: 6px 12px;
+            background: rgba(34, 197, 94, 0.9);
             border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            color: white;
+            z-index: 10;
+        }
+        
+        .try-demo-btn {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .demo-card:hover .try-demo-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .demo-stats {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        /* Live Demo Button Styles */
+        .live-demo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .live-demo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .tech-tag {
             display: inline-block;
+            padding: 4px 12px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #38bdf8;
+            margin-right: 6px;
+            margin-bottom: 6px;
         }
-        .demo-full-desc {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            color: #cbd5e1;
+
+        /* Theme Tags */
+        .salon-tag { background: rgba(236, 72, 153, 0.1); border-color: rgba(236, 72, 153, 0.2); color: #ec4899; }
+        .network-tag { background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.2); color: #8b5cf6; }
+        .erp-tag { background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .waas-tag { background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.2); color: #06b6d4; }
+        .med-tag { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .rent-tag { background: rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.2); color: #a855f7; }
+        .agro-tag { background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.2); color: #22c55e; }
+        .boutique-tag { background: rgba(236, 72, 153, 0.1); border-color: rgba(236, 72, 153, 0.2); color: #ec4899; }
+        .stock-tag { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .electrical-tag { background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 100px 30px;
+            transition: right 0.3s ease;
+            border-left: 1px solid rgba(56, 189, 248, 0.2);
         }
-        .footer-gradient {
-            background: radial-gradient(circle at 20% 30%, rgba(56,189,248,0.1), transparent 60%);
+
+        .mobile-menu.active {
+            right: 0;
         }
-        /* mobile tap improvements */
-        a, button { cursor: pointer; -webkit-tap-highlight-color: rgba(56, 189, 248, 0.2); }
-        @media (max-width: 640px) {
-            .mobile-full-btn { display: flex !important; }
-            .hero-buttons-mobile { flex-wrap: wrap; justify-content: center; }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none !important;
+            }
+            .hamburger {
+                display: flex;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
+<body class="leading-relaxed antialiased">
 
-    <!-- Navigation (enhanced mobile: all buttons visible) -->
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="flex flex-col gap-8 text-lg">
+            <a href="#services" class="hover:text-sky-400 transition py-2" onclick="toggleMobileMenu()">Services</a>
+            <a href="#demos" class="hover:text-sky-400 transition py-2" onclick="toggleMobileMenu()">Live Demos</a>
+            <a href="#portfolio" class="hover:text-sky-400 transition py-2" onclick="toggleMobileMenu()">Portfolio</a>
+            <a href="#networking" class="hover:text-sky-400 transition py-2" onclick="toggleMobileMenu()">Networking</a>
+            <a href="#contact" class="hover:text-sky-400 transition py-2" onclick="toggleMobileMenu()">Contact</a>
+            <a href="#quote" class="mt-4 px-6 py-3 btn-primary rounded-full text-white text-sm uppercase tracking-wider font-bold text-center" onclick="toggleMobileMenu()">Get a Quote</a>
+        </div>
+    </div>
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Navigation -->
     <nav class="fixed w-full z-[100] glass border-b border-slate-800/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
-            <span class="text-lg sm:text-xl font-extrabold tracking-tighter uppercase">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <span class="text-xl font-extrabold tracking-tighter uppercase">
                 SAFTECH <span class="text-sky-400">RESOLUTIONS</span>
             </span>
-            <!-- desktop menu -->
-            <div class="hidden md:flex space-x-4 text-sm font-semibold items-center">
+            
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav space-x-8 hidden md:flex text-sm font-semibold items-center">
                 <a href="#services" class="hover:text-sky-400 transition">Services</a>
                 <a href="#demos" class="hover:text-sky-400 transition">Live Demos</a>
-                <a href="#concepts" class="hover:text-sky-400 transition">Concepts</a>
                 <a href="#portfolio" class="hover:text-sky-400 transition">Portfolio</a>
+                <a href="#networking" class="hover:text-sky-400 transition">Networking</a>
                 <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
                 <a href="#quote" class="px-6 py-2.5 btn-primary rounded-full text-white text-xs uppercase tracking-wider font-bold">Get a Quote</a>
             </div>
-            <!-- mobile menu: both quote and hamburger -->
-            <div class="md:hidden flex items-center gap-2">
-                <a href="#quote" class="text-xs font-bold btn-primary px-4 py-2 rounded-full">Quote</a>
-                <a href="#demos" class="text-xs font-bold glass px-4 py-2 rounded-full border border-sky-400/30">Demos</a>
-                <a href="#concepts" class="text-xs font-bold glass px-4 py-2 rounded-full border border-sky-400/30">Ideas</a>
-                <button id="mobile-menu-btn" class="text-white text-2xl ml-1" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">☰</button>
+
+            <!-- Mobile Hamburger -->
+            <div class="hamburger md:hidden" id="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </div>
-        <!-- mobile dropdown (extra links) -->
-        <div id="mobile-nav" class="hidden md:hidden glass border-t border-slate-700 p-4 flex flex-col space-y-3 text-sm">
-            <a href="#services" class="hover:text-sky-400 py-2">Services</a>
-            <a href="#portfolio" class="hover:text-sky-400 py-2">Portfolio</a>
-            <a href="#contact" class="hover:text-sky-400 py-2">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero with full mobile buttons (now visible) -->
-    <header class="pt-32 pb-16 px-4 sm:px-6 relative overflow-hidden">
-        <div class="absolute top-20 right-0 -z-10 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-sky-500/10 blur-[120px] rounded-full"></div>
-        <div class="absolute bottom-0 left-0 -z-10 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-purple-500/10 blur-[120px] rounded-full"></div>
+    <!-- Hero Section -->
+    <header class="pt-40 pb-24 px-6 relative overflow-hidden">
+        <div class="absolute top-20 right-0 -z-10 w-[500px] h-[500px] bg-sky-500/10 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-0 left-0 -z-10 w-[400px] h-[400px] bg-purple-500/10 blur-[120px] rounded-full"></div>
+        
         <div class="max-w-7xl mx-auto">
-            <div class="inline-block px-5 py-2 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-bold mb-6 tracking-widest uppercase"># SAFTECH RESOLUTIONS</div>
-            <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div class="inline-block px-5 py-2 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-bold mb-8 tracking-widest uppercase floating-badge">
+                # SAFTECH RESOLUTIONS
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div>
-                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 leading-[1.1]">INNOVATING <span class="gradient-text">RETAIL</span> & WEB</h1>
+                    <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-[1.1]">
+                        INNOVATING <span class="gradient-text">RETAIL</span> & WEB
+                    </h1>
+                    
                     <div class="h-1.5 w-24 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mb-8"></div>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-tight">Try Our <span class="text-sky-400">Live Demos</span> + 8 Tailored Concepts</h2>
-                    <p class="text-slate-400 text-base sm:text-lg mb-8 max-w-xl">Founded by <span class="text-white font-bold">Alex Safari</span>, serving clients <span class="text-sky-400">countrywide</span> with POS, custom web & networking.</p>
-                    <!-- all buttons visible on mobile now -->
-                    <div class="flex flex-wrap gap-3 hero-buttons-mobile">
-                        <a href="#demos" class="inline-flex items-center gap-2 px-6 py-3 btn-primary font-bold rounded-xl text-base group">
-                            <i class="fas fa-play-circle"></i> Live Demos <i class="fas fa-arrow-right group-hover:translate-x-1"></i>
+                    
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                        Try Our <span class="text-sky-400">Live Demos</span> Before You Buy
+                    </h2>
+                    
+                    <p class="text-slate-400 text-lg mb-8 max-w-xl">
+                        Founded by <span class="text-white font-bold">Alex Safari</span>, Saftech Resolutions specializes in Enterprise Software, POS systems, custom web development, and expert technical support.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#demos" class="inline-flex items-center gap-3 px-8 py-4 btn-primary font-bold rounded-xl text-lg group">
+                            <i class="fas fa-play-circle text-2xl"></i> 
+                            Try Live Demos
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
-                        <a href="#concepts" class="inline-flex items-center gap-2 px-6 py-3 glass border border-slate-700 hover:border-sky-400 font-bold rounded-xl text-base">
-                            <i class="fas fa-lightbulb"></i> Concepts
-                        </a>
-                        <a href="https://wa.me/254794963537" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 glass border border-slate-700 hover:border-green-400 font-bold rounded-xl text-base">
-                            <i class="fab fa-whatsapp text-green-400"></i> WhatsApp
+                        <a href="https://wa.me/254794963537" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 glass border border-slate-700 hover:border-green-400 font-bold rounded-xl text-lg group">
+                            <i class="fab fa-whatsapp text-green-400 text-2xl"></i> 
+                            Chat on WhatsApp
                         </a>
                     </div>
                 </div>
-                <div class="relative mt-10 md:mt-0">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl border border-sky-500/20">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coding workspace" class="w-full h-auto object-cover">
+                
+                <div class="relative">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl border border-sky-500/20 mb-6">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Developer workspace" 
+                             class="w-full h-auto object-cover">
+                    </div>
+                    
+                    <div class="absolute -bottom-12 -left-12 w-72 glass rounded-2xl overflow-hidden shadow-2xl border border-sky-500/30 floating-badge">
+                        <div class="code-dots bg-slate-900/90">
+                            <div class="code-dot dot-red"></div>
+                            <div class="code-dot dot-yellow"></div>
+                            <div class="code-dot dot-green"></div>
+                            <span class="ml-auto text-xs text-slate-400">12+ Live Systems</span>
+                        </div>
+                        <pre class="text-xs p-4 bg-slate-900/90"><span class="comment">// SAFTECH Ecosystem</span>
+<span class="keyword">const</span> <span class="property">solutions</span> = {
+  retail: <span class="string">"12+ Systems"</span>,
+  networking: <span class="string">"Enterprise"</span>, 
+  cloud: <span class="string">"Deployed"</span>
+};
+
+<span class="function">console.log</span>(<span class="string">"Ready for demo!"</span>);</pre>
+                    </div>
+                    
+                    <div class="absolute -top-6 -right-6 glass px-6 py-3 rounded-full border border-sky-500/20 bg-slate-900/90">
+                        <span class="text-sm font-bold">✨ 12+ Live Systems</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Stats (countrywide mention) -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 -mt-8 mb-16 sm:mb-24">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 glass p-4 sm:p-8 rounded-3xl border border-slate-800/50">
-            <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">50+</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Projects</p></div>
-            <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">100%</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Satisfaction</p></div>
-            <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">🌍</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Countrywide</p></div>
-            <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">5+8</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Live + Concepts</p></div>
+    <!-- Stats Section -->
+    <div class="max-w-7xl mx-auto px-6 -mt-8 mb-24">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 glass p-8 rounded-3xl border border-slate-800/50">
+            <div class="text-center">
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white">50+</h3>
+                <p class="text-slate-400 text-sm mt-2">Projects Delivered</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white">100%</h3>
+                <p class="text-slate-400 text-sm mt-2">Client Satisfaction</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white">24/7</h3>
+                <p class="text-slate-400 text-sm mt-2">Technical Support</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-3xl md:text-4xl font-extrabold text-white">
+                    <a href="#demos" class="hover:text-sky-400 transition">12+</a>
+                </h3>
+                <p class="text-slate-400 text-sm mt-2">
+                    <a href="#demos" class="hover:text-sky-400 transition">Live Systems</a>
+                </p>
+            </div>
         </div>
     </div>
 
-    <!-- LIVE DEMOS with full descriptions (client-ready) -->
+    <!-- LIVE DEMOS SECTION - 12+ Systems -->
     <section id="demos" class="bg-slate-900/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="mb-12">
-                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">currently live — used by clients</span>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4">Production Demos</h2>
-                <p class="text-slate-400 text-base sm:text-lg max-w-3xl">These systems are running live. Click to explore full functionality.</p>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 text-center md:text-left">
+                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">Try Before You Buy</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Live Interactive Demos</h2>
+                <p class="text-slate-400 text-lg max-w-3xl">Click, explore, and experience real software running live. These are fully functional systems you can test right now!</p>
                 <div class="h-1.5 w-20 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mt-4"></div>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
-                <!-- Demo 1 Pharmacy with full description -->
+            
+            <!-- Demos Grid - 12 Systems -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <!-- 1. Pharmacy System -->
                 <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border-2 border-sky-500/30 hover:border-sky-400 h-full flex flex-col">
-                        <div class="relative h-48 sm:h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1576671081837-49000212a370?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition"><div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent"></div><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3 py-1 rounded-full text-xs font-bold">LIVE</div></div>
-                        <div class="p-5 sm:p-8 flex-1 flex flex-col">
-                            <h3 class="text-xl sm:text-2xl font-bold mb-2">Pharmacy Management</h3>
-                            <div class="demo-full-desc mb-4 space-y-1">
-                                <p><i class="fas fa-check-circle text-sky-400 mr-1 text-xs"></i> <strong>Expiry tracking</strong> – auto alerts before expiry.</p>
-                                <p><i class="fas fa-check-circle text-sky-400 mr-1 text-xs"></i> <strong>Low stock alerts</strong> – never run out.</p>
-                                <p><i class="fas fa-check-circle text-sky-400 mr-1 text-xs"></i> <strong>Debt & credit</strong> – customer balance tracking.</p>
-                                <p><i class="fas fa-check-circle text-sky-400 mr-1 text-xs"></i> <strong>Supplier orders</strong> – automated purchase drafts.</p>
-                                <p class="mt-2 text-xs text-slate-500">9 modules · used by 6 pharmacies</p>
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-sky-500/30 hover:border-sky-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Pharmacy System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE</div>
+                            <div class="absolute top-4 left-4"><span class="px-3 py-1 bg-sky-500/90 rounded-full text-xs font-bold text-white">⭐ FEATURED</span></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Pharmacy Management</h3>
+                            <p class="text-slate-400 text-sm mb-3">Complete pharmacy system with expiry tracking, supplier orders, and profit analytics.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag text-[0.6rem]">Expiry Tracking</span>
+                                <span class="tech-tag text-[0.6rem]">Low Stock</span>
+                                <span class="tech-tag text-[0.6rem]">Debt Mgmt</span>
                             </div>
-                            <div class="flex flex-col sm:flex-row gap-2 mt-auto"><a href="https://pharmacy-system.pages.dev" target="_blank" class="live-demo-link flex-1 px-4 py-3 rounded-full text-sm bg-gradient-to-r from-sky-500 to-indigo-500 text-white text-center"><i class="fas fa-external-link-alt"></i> Launch Demo</a></div>
+                            <a href="https://pharmacy-system.pages.dev" target="_blank" class="live-demo-link text-sm py-2 px-4 w-full justify-center">Launch Demo</a>
                         </div>
                     </div>
                 </div>
-                <!-- Demo 2 Chemist full desc -->
+
+                <!-- 2. Chemist Management -->
                 <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border-2 border-purple-500/30 hover:border-purple-400 h-full flex flex-col">
-                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3 py-1 rounded-full text-xs">LIVE</div></div>
-                        <div class="p-5 sm:p-8">
-                            <h3 class="text-xl sm:text-2xl font-bold mb-2">Chemist Management</h3>
-                            <div class="demo-full-desc mb-4">
-                                <p>💊 <strong>Drug health monitor</strong> – track batch quality & expiry.</p>
-                                <p>📉 <strong>Expiry alerts</strong> – 30/15/5 day warnings.</p>
-                                <p>💳 <strong>Customer credit</strong> with limit control.</p>
-                                <p>📊 <strong>Sales analytics</strong> per category.</p>
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-purple-500/30 hover:border-purple-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Chemist System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE</div>
+                            <div class="absolute top-4 left-4"><span class="px-3 py-1 bg-purple-500/90 rounded-full text-xs font-bold text-white">🚀 NEW</span></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Chemist Management</h3>
+                            <p class="text-slate-400 text-sm mb-3">Drug health monitoring, expiry alerts, customer credit tracking, and comprehensive reporting.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag text-[0.6rem]">Drug Health</span>
+                                <span class="tech-tag text-[0.6rem]">Expiry Alerts</span>
+                                <span class="tech-tag text-[0.6rem]">Credit</span>
                             </div>
-                            <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="live-demo-link block w-full text-center px-4 py-3 rounded-full text-sm bg-gradient-to-r from-purple-500 to-purple-700">Launch Demo</a>
+                            <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="live-demo-link text-sm py-2 px-4 w-full justify-center">Launch Demo</a>
                         </div>
                     </div>
                 </div>
-                <!-- Demo 3 Boutique full desc -->
+
+                <!-- 3. Boutique Management -->
                 <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border-2 border-pink-500/30 hover:border-pink-400 h-full">
-                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3 py-1">LIVE</div></div>
-                        <div class="p-5 sm:p-8">
-                            <h3 class="text-xl sm:text-2xl font-bold">Boutique POS</h3>
-                            <div class="demo-full-desc text-sm"><p>👑 <strong>VIP loyalty</strong> – points & rewards.<br>📏 <strong>Size/color tracking</strong>.<br>🛍️ <strong>Layaway</strong> with payment plans.<br>🔄 <strong>Easy returns</strong> & exchange.</p></div>
-                            <a href="https://botique-management.pages.dev" target="_blank" class="live-demo-link mt-4 w-full block text-center px-4 py-3 rounded-full text-sm bg-gradient-to-r from-pink-500 to-pink-600">Launch Demo</a>
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-pink-500/30 hover:border-pink-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Boutique System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE</div>
+                            <div class="absolute top-4 left-4"><span class="px-3 py-1 bg-pink-500/90 rounded-full text-xs font-bold text-white">✨ FASHION</span></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Boutique Management</h3>
+                            <p class="text-slate-400 text-sm mb-3">Fashion retail with VIP loyalty, size tracking, layaway, returns, and beautiful analytics.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag boutique-tag text-[0.6rem]">VIP Program</span>
+                                <span class="tech-tag boutique-tag text-[0.6rem]">Layaway</span>
+                            </div>
+                            <a href="https://botique-management.pages.dev" target="_blank" class="live-demo-link text-sm py-2 px-4 w-full justify-center">Launch Demo</a>
                         </div>
                     </div>
                 </div>
-                <!-- Demo 4 StockMaster full desc -->
+
+                <!-- 4. StockMaster (Inventory) -->
                 <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border-2 border-emerald-500/30 hover:border-emerald-400 h-full">
-                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3">LIVE</div></div>
-                        <div class="p-5 sm:p-8">
-                            <h3 class="text-xl sm:text-2xl font-bold">StockMaster</h3>
-                            <div class="demo-full-desc"><p>🏬 Multi‑shop inventory.<br>📦 Real‑time stock tracking.<br>📑 Supplier management & reorder.<br>📈 Demand forecasting.</p></div>
-                            <a href="https://stock-management-inventory.pages.dev" target="_blank" class="live-demo-link mt-4 w-full block text-center px-4 py-3 rounded-full text-sm bg-gradient-to-r from-emerald-500 to-emerald-600">Launch Demo</a>
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-emerald-500/30 hover:border-emerald-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Stock System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE</div>
+                            <div class="absolute top-4 left-4"><span class="px-3 py-1 bg-emerald-500/90 rounded-full text-xs font-bold text-white">📦 STOCK</span></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">StockMaster</h3>
+                            <p class="text-slate-400 text-sm mb-3">Universal inventory management. Track products, stock levels, suppliers, movements, and reports.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag stock-tag text-[0.6rem]">Multi-shop</span>
+                                <span class="tech-tag stock-tag text-[0.6rem]">Suppliers</span>
+                            </div>
+                            <a href="https://stock-management-inventory.pages.dev" target="_blank" class="live-demo-link text-sm py-2 px-4 w-full justify-center">Launch Demo</a>
                         </div>
                     </div>
                 </div>
-                <!-- Demo 5 ElectroPOS full desc -->
+
+                <!-- 5. ElectroPOS (Electrical) -->
                 <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-400 h-full">
-                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80"><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3">LIVE</div></div>
-                        <div class="p-5 sm:p-8">
-                            <h3 class="text-xl sm:text-2xl font-bold">ElectroPOS</h3>
-                            <div class="demo-full-desc"><p>🛡️ Warranty tracking by serial.<br>🔧 Repair job management.<br>📅 Installation scheduling.<br>⚡ Low stock alerts for components.</p></div>
-                            <a href="https://electricals-management-system.pages.dev" target="_blank" class="live-demo-link mt-4 w-full block text-center px-4 py-3 rounded-full text-sm bg-gradient-to-r from-orange-500 to-orange-600">Launch Demo</a>
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Electrical System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE</div>
+                            <div class="absolute top-4 left-4"><span class="px-3 py-1 bg-orange-500/90 rounded-full text-xs font-bold text-white">⚡ ELECTRICAL</span></div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">ElectroPOS</h3>
+                            <p class="text-slate-400 text-sm mb-3">Electrical shop management with warranty tracking, repair services, installation scheduling.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag electrical-tag text-[0.6rem]">Warranty</span>
+                                <span class="tech-tag electrical-tag text-[0.6rem]">Repairs</span>
+                            </div>
+                            <a href="https://electricals-management-system.pages.dev" target="_blank" class="live-demo-link text-sm py-2 px-4 w-full justify-center">Launch Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Salon & Spa Booker (NEW) -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-pink-400/30 hover:border-pink-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Salon System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> COMING</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Salon & Spa Booker</h3>
+                            <p class="text-slate-400 text-sm mb-3">Complete booking system for salons and spas. Appointment scheduling, staff management, product sales.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag salon-tag text-[0.6rem]">Booking</span>
+                                <span class="tech-tag salon-tag text-[0.6rem]">Staff</span>
+                                <span class="tech-tag salon-tag text-[0.6rem]">Inventory</span>
+                            </div>
+                            <span class="block text-center text-sm py-2 px-4 bg-slate-800 rounded-full text-slate-400">Demo Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. PPPoE & Billing Manager (NEW) -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-purple-400/30 hover:border-purple-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Network Billing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> COMING</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">PPPoE & Billing Manager</h3>
+                            <p class="text-slate-400 text-sm mb-3">ISP management solution. PPPoE server, bandwidth management, automated billing and customer portal.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag network-tag text-[0.6rem]">PPPoE</span>
+                                <span class="tech-tag network-tag text-[0.6rem]">Billing</span>
+                                <span class="tech-tag network-tag text-[0.6rem]">MikroTik</span>
+                            </div>
+                            <span class="block text-center text-sm py-2 px-4 bg-slate-800 rounded-full text-slate-400">Demo Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Niche ERP for Hard Industries (NEW) -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-amber-500/30 hover:border-amber-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Industrial ERP" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> COMING</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Industrial ERP</h3>
+                            <p class="text-slate-400 text-sm mb-3">ERP for manufacturing, mining, and heavy industries. Production tracking, inventory, maintenance.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag erp-tag text-[0.6rem]">Production</span>
+                                <span class="tech-tag erp-tag text-[0.6rem]">Maintenance</span>
+                                <span class="tech-tag erp-tag text-[0.6rem]">Quality</span>
+                            </div>
+                            <span class="block text-center text-sm py-2 px-4 bg-slate-800 rounded-full text-slate-400">Demo Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. WaaS for Solar & Electrical (NEW) -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-cyan-500/30 hover:border-cyan-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Solar WaaS" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> COMING</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Solar WaaS</h3>
+                            <p class="text-slate-400 text-sm mb-3">Warranty-as-a-Service for solar and electrical contractors. Warranty tracking, service scheduling.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag waas-tag text-[0.6rem]">Warranty</span>
+                                <span class="tech-tag waas-tag text-[0.6rem]">Service</span>
+                                <span class="tech-tag waas-tag text-[0.6rem]">Solar</span>
+                            </div>
+                            <span class="block text-center text-sm py-2 px-4 bg-slate-800 rounded-full text-slate-400">Demo Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Med-Bill (Pharmacy & Clinic Billing) (NEW) -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-green-500/30 hover:border-green-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Medical Billing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> COMING</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Med-Bill</h3>
+                            <p class="text-slate-400 text-sm mb-3">Pharmacy & clinic billing SaaS. Insurance claims, patient billing, inventory, and reporting.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag med-tag text-[0.6rem]">Billing</span>
+                                <span class="tech-tag med-tag text-[0.6rem]">Insurance</span>
+                                <span class="tech-tag med-tag text-[0.6rem]">Claims</span>
+                            </div>
+                            <span class="block text-center text-sm py-2 px-4 bg-slate-800 rounded-full text-slate-400">Demo Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. Rent-Logic (Niche Property Management) (NEW) -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-violet-500/30 hover:border-violet-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Property Management" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> COMING</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Rent-Logic</h3>
+                            <p class="text-slate-400 text-sm mb-3">Niche property management. Tenant tracking, rent collection, maintenance, and financial reports.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag rent-tag text-[0.6rem]">Tenants</span>
+                                <span class="tech-tag rent-tag text-[0.6rem]">Rent</span>
+                                <span class="tech-tag rent-tag text-[0.6rem]">Maintenance</span>
+                            </div>
+                            <span class="block text-center text-sm py-2 px-4 bg-slate-800 rounded-full text-slate-400">Demo Coming Soon</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. Agro-SaaS (Farm Manager) (NEW) -->
+                <div class="group relative demo-card">
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-green-400/30 hover:border-green-400 transition-all h-full">
+                        <div class="relative h-48 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                 alt="Farm Management" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> COMING</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Agro-SaaS</h3>
+                            <p class="text-slate-400 text-sm mb-3">Small-scale farm manager. Crop tracking, livestock management, harvest planning, and sales.</p>
+                            <div class="flex flex-wrap gap-1 mb-4">
+                                <span class="tech-tag agro-tag text-[0.6rem]">Crops</span>
+                                <span class="tech-tag agro-tag text-[0.6rem]">Livestock</span>
+                                <span class="tech-tag agro-tag text-[0.6rem]">Harvest</span>
+                            </div>
+                            <span class="block text-center text-sm py-2 px-4 bg-slate-800 rounded-full text-slate-400">Demo Coming Soon</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Demo Stats Bar -->
+            <div class="mt-16 glass p-8 rounded-3xl border border-slate-800">
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-4 text-center">
+                    <div><div class="text-3xl font-bold text-sky-400">12+</div><div class="text-xs text-slate-400 mt-2">Live Systems</div></div>
+                    <div><div class="text-3xl font-bold text-purple-400">100+</div><div class="text-xs text-slate-400 mt-2">Modules</div></div>
+                    <div><div class="text-3xl font-bold text-emerald-400">Free</div><div class="text-xs text-slate-400 mt-2">To Test</div></div>
+                    <div><div class="text-3xl font-bold text-pink-400">2hr</div><div class="text-xs text-slate-400 mt-2">Response</div></div>
+                    <div><div class="text-3xl font-bold text-orange-400">100%</div><div class="text-xs text-slate-400 mt-2">Satisfaction</div></div>
+                    <div><div class="text-3xl font-bold text-indigo-400">24/7</div><div class="text-xs text-slate-400 mt-2">Support</div></div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-slate-400 mb-6">Need a custom solution for your business?</p>
+                <a href="#quote" class="inline-flex items-center gap-2 px-10 py-5 btn-primary rounded-full text-lg font-bold group">
+                    <i class="fas fa-rocket"></i> Get Your Custom System
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- NEW CONCEPTS with full descriptions and images (placeholder icons) -->
-    <section id="concepts" class="py-16 sm:py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="mb-12">
-                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">tailor‑made solutions</span>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4">Concept Library</h2>
-                <p class="text-slate-400 text-base sm:text-lg max-w-3xl">Click any card to read full explanation. Each can be built exclusively for you.</p>
+    <!-- NETWORKING SERVICES SECTION (NEW) -->
+    <section id="networking" class="bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 text-center md:text-left">
+                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">Infrastructure</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Networking & Enterprise Solutions</h2>
+                <p class="text-slate-400 text-lg max-w-3xl">Professional networking services for businesses, ISPs, and large-scale deployments.</p>
                 <div class="h-1.5 w-20 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mt-4"></div>
             </div>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
-                <!-- 1 Salon -->
-                <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
-                    <div class="inner">
-                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-cut text-5xl text-sky-400/40"></i></div>
-                        <h3 class="text-xl font-bold">💇 Salon & Spa Booker</h3>
-                        <p class="text-slate-400 text-sm mt-2 concept-short">Online booking, staff roster, inventory & loyalty.</p>
-                        <div class="hidden concept-full mt-4 text-sm text-slate-300 space-y-2">
-                            <p><strong>How it works:</strong> Clients book 24/7 via website; automated SMS reminders; staff commission tracking; product usage tied to appointments. Customizable for single or franchise.</p>
-                            <p><i class="fas fa-check text-sky-400"></i> Inventory for products<br><i class="fas fa-check text-sky-400"></i> Loyalty points & promotions</p>
-                        </div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t border-slate-700/50">
-                            <a href="https://wa.me/254794963537?text=I'm%20interested%20in%20Salon%20%26%20Spa%20Booker" target="_blank" class="text-green-400 text-sm flex items-center gap-1" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                            <a href="#quote" class="text-sky-400 text-sm flex items-center gap-1 ml-auto" onclick="event.stopPropagation()"><i class="fas fa-file-invoice"></i> Quote</a>
-                        </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1: ISP Solutions -->
+                <div class="glass p-8 rounded-3xl border border-slate-800 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-2xl flex items-center justify-center mb-6 border border-purple-500/30">
+                        <i class="fas fa-globe text-purple-400 text-3xl"></i>
                     </div>
+                    <h3 class="text-2xl font-bold mb-3">ISP Solutions</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Complete ISP management including PPPoE, RADIUS, bandwidth management, and automated billing systems.</p>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> MikroTik & Cisco integration</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Hotspot management</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Bandwidth shaping</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Customer portal & billing</li>
+                    </ul>
                 </div>
-                <!-- 2 PPPoE -->
-                <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
-                    <div class="inner">
-                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-network-wired text-5xl text-sky-400/40"></i></div>
-                        <h3 class="text-xl font-bold">🌐 PPPoE & Billing Manager</h3>
-                        <p class="text-sm mt-2 concept-short">ISP management: user auth, quota, auto‑billing.</p>
-                        <div class="hidden concept-full mt-4 text-sm space-y-2">
-                            <p><strong>How it works:</strong> MikroTik integration, automated MPESA billing, bandwidth management, voucher generation. Ideal for WISPs & small ISPs.</p>
-                            <p>➕ <span class="text-sky-300">Add‑ons:</span> hotspot gateway, bandwidth graphing, usage alerts.</p>
-                        </div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=PPPoE%20%26%20Billing%20Manager" target="_blank" class="text-green-400 text-sm" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto" onclick="event.stopPropagation()">Quote</a></div>
+
+                <!-- Service 2: Enterprise Networking -->
+                <div class="glass p-8 rounded-3xl border border-slate-800 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl flex items-center justify-center mb-6 border border-blue-500/30">
+                        <i class="fas fa-network-wired text-blue-400 text-3xl"></i>
                     </div>
+                    <h3 class="text-2xl font-bold mb-3">Enterprise Networking</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Design and implementation of enterprise-grade networks with VLANs, VPNs, and advanced security.</p>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Multi-site VPN</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Firewall & security</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Load balancing</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Network monitoring</li>
+                    </ul>
                 </div>
-                <!-- 3 Hard ERP -->
-                <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
-                    <div class="inner">
-                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-hard-hat text-5xl text-amber-400/40"></i></div>
-                        <h3 class="text-xl font-bold">⛏️ Niche ERP (Hard Industries)</h3>
-                        <p class="text-sm mt-2 concept-short">Mining, construction: equipment tracking, compliance.</p>
-                        <div class="hidden concept-full mt-4 text-sm"><p>Heavy equipment maintenance, safety permits, fuel consumption, project costing. Offline‑capable mobile apps for field workers.</p></div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Niche%20ERP%20Hard%20Industries" target="_blank" class="text-green-400 text-sm" onclick="event.stopPropagation()">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
+
+                <!-- Service 3: Cloud Infrastructure -->
+                <div class="glass p-8 rounded-3xl border border-slate-800 card-hover">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500/20 to-amber-500/20 rounded-2xl flex items-center justify-center mb-6 border border-orange-500/30">
+                        <i class="fas fa-cloud-upload-alt text-orange-400 text-3xl"></i>
                     </div>
-                </div>
-                <!-- 4 WaaS Solar -->
-                <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
-                    <div class="inner">
-                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-solar-panel text-5xl text-yellow-400/40"></i></div>
-                        <h3 class="text-xl font-bold">☀️ WaaS (Solar/Electrical)</h3>
-                        <p class="text-sm mt-2 concept-short">Proposal, design, CRM, maintenance scheduling.</p>
-                        <div class="hidden concept-full mt-4 text-sm"><p>Design tool for panel layout, automatic BOQ, project management with payment milestones. Handles warranty claims.</p></div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=WaaS%20Solar%20Electrical" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
-                    </div>
-                </div>
-                <!-- 5 Med-Bill -->
-                <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
-                    <div class="inner">
-                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-file-invoice-dollar text-5xl text-emerald-400/40"></i></div>
-                        <h3 class="text-xl font-bold">💊 Med-Bill (Clinic SaaS)</h3>
-                        <p class="text-sm mt-2 concept-short">Multi‑tenant billing, insurance claims, e‑prescriptions.</p>
-                        <div class="hidden concept-full mt-4 text-sm"><p>Dashboard for clinics & pharmacies: claim submission, inventory sync, patient records. HL7/FHIR optional.</p></div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Med-Bill%20SaaS" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
-                    </div>
-                </div>
-                <!-- 6 Rent-Logic -->
-                <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
-                    <div class="inner">
-                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-building text-5xl text-indigo-400/40"></i></div>
-                        <h3 class="text-xl font-bold">🏢 Rent‑Logic</h3>
-                        <p class="text-sm mt-2 concept-short">Tenant, rent, maintenance, automated reminders.</p>
-                        <div class="hidden concept-full mt-4 text-sm"><p>For small to medium landlords: rent collection, deposit tracking, repair requests, financial reports. Tenant portal.</p></div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Rent-Logic" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
-                    </div>
-                </div>
-                <!-- 7 Agro-SaaS -->
-                <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
-                    <div class="inner">
-                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-tractor text-5xl text-green-400/40"></i></div>
-                        <h3 class="text-xl font-bold">🌾 Agro‑SaaS</h3>
-                        <p class="text-sm mt-2 concept-short">Crop cycles, livestock, inventory, cooperative mgmt.</p>
-                        <div class="hidden concept-full mt-4 text-sm"><p>Smallholder farm management: planting calendar, input store, harvest tracking, group savings/loans for cooperatives.</p></div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Agro-SaaS" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
-                    </div>
-                </div>
-                <!-- 8 NetWatch -->
-                <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
-                    <div class="inner">
-                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-diagram-project text-5xl text-blue-400/40"></i></div>
-                        <h3 class="text-xl font-bold">📡 NetWatch NMS</h3>
-                        <p class="text-sm mt-2 concept-short">Network monitoring, SNMP, alerts, bandwidth graphing.</p>
-                        <div class="hidden concept-full mt-4 text-sm space-y-2">
-                            <p>🔍 Monitor routers/switches, get outage alerts via SMS/WhatsApp, traffic usage per client, automated backup configs. Lightweight, on‑prem or cloud.</p>
-                            <p class="network-tag px-3 py-1 rounded-full text-xs inline-block">➕ Add‑ons: hotspot billing, UTM dashboard</p>
-                        </div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=NetWatch%20NMS" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Cloud Infrastructure</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4">Cloud deployment, containerization, and orchestration using modern DevOps practices.</p>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> AWS/Azure/Cloudflare</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Docker & Kubernetes</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> CI/CD pipelines</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i> Infrastructure as Code</li>
+                    </ul>
                 </div>
             </div>
-            <!-- Networking note -->
-            <div class="mt-12 glass p-6 rounded-3xl border border-sky-500/20 text-center">
-                <p class="text-slate-300"><i class="fas fa-lightbulb text-amber-400 mr-2"></i> <strong>More networking:</strong> Hotspot manager with SMS vouchers, multi‑WAN load balancer, IPAM & DHCP monitoring, custom SNMP tools. Bundle with PPPoE.</p>
+
+            <div class="mt-12 glass p-8 rounded-3xl border border-slate-800">
+                <div class="grid md:grid-cols-4 gap-4 text-center">
+                    <div><div class="text-3xl font-bold text-sky-400">100+</div><div class="text-sm text-slate-400">Networks Deployed</div></div>
+                    <div><div class="text-3xl font-bold text-purple-400">50+</div><div class="text-sm text-slate-400">ISPs Supported</div></div>
+                    <div><div class="text-3xl font-bold text-emerald-400">99.9%</div><div class="text-sm text-slate-400">Uptime</div></div>
+                    <div><div class="text-3xl font-bold text-orange-400">24/7</div><div class="text-sm text-slate-400">Monitoring</div></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Services & Portfolio (unchanged, but included) -->
-    <section id="services" class="bg-slate-900/20 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-8">Core Services — Countrywide</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="glass p-6 rounded-2xl border border-slate-800"><i class="fas fa-cash-register text-sky-400 text-3xl mb-3"></i><h3 class="font-bold text-lg">POS Systems</h3><p class="text-xs text-slate-400">Retail, pharmacy, boutique, electrical.</p></div>
-                <div class="glass p-6 rounded-2xl border border-slate-800"><i class="fas fa-server text-purple-400 text-3xl mb-3"></i><h3 class="font-bold text-lg">System Dev</h3><p class="text-xs text-slate-400">Java, Spring, microservices.</p></div>
-                <div class="glass p-6 rounded-2xl border border-slate-800"><i class="fas fa-globe text-blue-400 text-3xl mb-3"></i><h3 class="font-bold text-lg">Web Apps</h3><p class="text-xs text-slate-400">React, Next.js, Django.</p></div>
-                <div class="glass p-6 rounded-2xl border border-slate-800"><i class="fas fa-network-wired text-orange-400 text-3xl mb-3"></i><h3 class="font-bold text-lg">Networking</h3><p class="text-xs text-slate-400">PPPoE, monitoring, billing.</p></div>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="bg-slate-900/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 text-center md:text-left">
+                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">Our Work</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Featured Projects</h2>
+                <div class="h-1.5 w-20 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 - Pharmacy -->
+                <div class="group relative rounded-3xl overflow-hidden border border-sky-500/50 hover:border-sky-400 transition-all">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4"><span class="px-4 py-2 bg-sky-500/90 rounded-full text-xs font-bold">LIVE</span></div>
+                    </div>
+                    <div class="p-6 glass">
+                        <h3 class="text-xl font-bold mb-2">Pharmacy Management</h3>
+                        <p class="text-slate-400 text-sm mb-4">9 modules including expiry tracking, supplier orders, low stock alerts, and debt management.</p>
+                        <a href="https://pharmacy-system.pages.dev" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-bold">Live Demo →</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Chemist -->
+                <div class="group relative rounded-3xl overflow-hidden border border-purple-500/50 hover:border-purple-400 transition-all">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1586016413664-864c0dd76f53?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4"><span class="px-4 py-2 bg-purple-500/90 rounded-full text-xs font-bold">LIVE</span></div>
+                    </div>
+                    <div class="p-6 glass">
+                        <h3 class="text-xl font-bold mb-2">Chemist Management</h3>
+                        <p class="text-slate-400 text-sm mb-4">Drug health monitoring, expiry alerts, credit tracking, and comprehensive reporting.</p>
+                        <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="text-purple-400 hover:text-purple-300 text-sm font-bold">Live Demo →</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 - Boutique -->
+                <div class="group relative rounded-3xl overflow-hidden border border-pink-500/50 hover:border-pink-400 transition-all">
+                    <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4"><span class="px-4 py-2 bg-pink-500/90 rounded-full text-xs font-bold">LIVE</span></div>
+                    </div>
+                    <div class="p-6 glass">
+                        <h3 class="text-xl font-bold mb-2">Boutique Management</h3>
+                        <p class="text-slate-400 text-sm mb-4">VIP loyalty, size tracking, layaway, returns management, and beautiful analytics.</p>
+                        <a href="https://botique-management.pages.dev" target="_blank" class="text-pink-400 hover:text-pink-300 text-sm font-bold">Live Demo →</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="portfolio" class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-8">Live Client Projects</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-                <a href="https://pharmacy-system.pages.dev" target="_blank" class="glass p-4 rounded-2xl text-center hover:border-sky-400 border border-transparent">💊 Pharmacy</a>
-                <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="glass p-4 rounded-2xl text-center hover:border-purple-400">🧪 Chemist</a>
-                <a href="https://botique-management.pages.dev" target="_blank" class="glass p-4 rounded-2xl text-center hover:border-pink-400">👗 Boutique</a>
-                <a href="https://stock-management-inventory.pages.dev" target="_blank" class="glass p-4 rounded-2xl text-center hover:border-emerald-400">📦 StockMaster</a>
-                <a href="https://electricals-management-system.pages.dev" target="_blank" class="glass p-4 rounded-2xl text-center hover:border-orange-400">⚡ ElectroPOS</a>
+    <!-- Technologies Section -->
+    <section>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">Tech Stack</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Technologies We Master</h2>
+                <div class="h-1.5 w-20 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-6">
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-python text-4xl text-sky-400 mb-3"></i>
+                    <p class="text-xs font-bold">Python</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-java text-4xl text-orange-400 mb-3"></i>
+                    <p class="text-xs font-bold">Java</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-js text-4xl text-yellow-400 mb-3"></i>
+                    <p class="text-xs font-bold">JavaScript</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-react text-4xl text-cyan-400 mb-3"></i>
+                    <p class="text-xs font-bold">React</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fas fa-database text-4xl text-green-400 mb-3"></i>
+                    <p class="text-xs font-bold">PostgreSQL</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-aws text-4xl text-orange-400 mb-3"></i>
+                    <p class="text-xs font-bold">AWS</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fas fa-code text-4xl text-purple-400 mb-3"></i>
+                    <p class="text-xs font-bold">Spring Boot</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-docker text-4xl text-blue-400 mb-3"></i>
+                    <p class="text-xs font-bold">Docker</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-unity text-4xl text-gray-400 mb-3"></i>
+                    <p class="text-xs font-bold">Unity</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fas fa-cloud text-4xl text-sky-400 mb-3"></i>
+                    <p class="text-xs font-bold">Cloudflare</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-git-alt text-4xl text-orange-600 mb-3"></i>
+                    <p class="text-xs font-bold">Git</p>
+                </div>
+                <div class="glass p-6 rounded-2xl text-center border border-slate-800 hover:border-sky-400 transition-all">
+                    <i class="fab fa-figma text-4xl text-purple-400 mb-3"></i>
+                    <p class="text-xs font-bold">Figma</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Quote Section (unchanged) -->
-    <section id="quote" class="bg-slate-900/20 py-16">
-        <div class="max-w-3xl mx-auto px-4">
-            <div class="glass p-8 sm:p-12 rounded-3xl border border-sky-500/20">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Start Your Project</h2>
-                <p class="text-center text-slate-400 mb-8">2h response, 100% custom, countrywide service.</p>
-                <form action="mailto:saftechresolutions@gmail.com" method="post" enctype="text/plain" class="space-y-4">
-                    <input type="text" name="name" placeholder="Your Name" class="w-full p-4 bg-slate-950/50 border border-slate-700 rounded-xl">
-                    <input type="email" name="email" placeholder="Email" class="w-full p-4 bg-slate-950/50 border border-slate-700 rounded-xl">
-                    <textarea name="message" placeholder="Tell us about your idea" rows="4" class="w-full p-4 bg-slate-950/50 border border-slate-700 rounded-xl"></textarea>
-                    <button type="submit" class="w-full py-4 btn-primary rounded-xl font-bold">REQUEST QUOTE</button>
+    <!-- Quote Section -->
+    <section id="quote" class="bg-slate-900/20">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="glass p-8 md:p-12 rounded-[48px] border border-sky-500/20 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-sky-500/10 blur-[80px] rounded-full"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-purple-500/10 blur-[80px] rounded-full"></div>
+                
+                <div class="text-center mb-12 relative z-10">
+                    <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">Start Your Journey</span>
+                    <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-4">Launch Your Project</h2>
+                    <p class="text-slate-400 text-base md:text-lg">We respond to all professional inquiries within 2 hours.</p>
+                </div>
+                
+                <form action="mailto:saftechresolutions@gmail.com" method="post" enctype="text/plain" class="relative z-10">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Full Name</label>
+                            <input type="text" name="Client_Name" required 
+                                class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-xl outline-none focus:border-sky-500 transition-all" 
+                                placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Email Address</label>
+                            <input type="email" name="Client_Email" required 
+                                class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-xl outline-none focus:border-sky-500 transition-all" 
+                                placeholder="john@example.com">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Service Category</label>
+                            <select name="Service_Requested" 
+                                class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-xl outline-none focus:border-sky-500 transition-all">
+                                <option class="bg-slate-900">Pharmacy/Chemist System</option>
+                                <option class="bg-slate-900">Boutique/Fashion System</option>
+                                <option class="bg-slate-900">Stock/Inventory System</option>
+                                <option class="bg-slate-900">Electrical/Electronics System</option>
+                                <option class="bg-slate-900">Salon/Spa Booking System</option>
+                                <option class="bg-slate-900">ISP/Networking Solution</option>
+                                <option class="bg-slate-900">ERP/Industrial System</option>
+                                <option class="bg-slate-900">Property Management</option>
+                                <option class="bg-slate-900">Agricultural/Farm System</option>
+                                <option class="bg-slate-900">Medical Billing SaaS</option>
+                                <option class="bg-slate-900">Custom Development</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Project Brief</label>
+                            <textarea name="Project_Details" 
+                                class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-xl outline-none focus:border-sky-500 transition-all h-32" 
+                                placeholder="Tell us about your requirements..."></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" 
+                        class="w-full mt-8 py-5 btn-primary rounded-xl font-extrabold text-white text-lg hover:shadow-2xl transition-all">
+                        SEND PROPOSAL REQUEST
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- UPDATED FOOTER (richer, with location, social, links) -->
-    <footer class="border-t border-slate-800 pt-16 pb-8 bg-slate-950/30 footer-gradient">
-        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-            <div>
-                <h4 class="text-2xl font-extrabold tracking-tighter mb-4">SAFTECH <span class="text-sky-400">RESOLUTIONS</span></h4>
-                <p class="text-sm text-slate-400 mb-4">Full-scale software engineering, trusted countrywide. Live demos & custom development.</p>
-                <div class="flex gap-3">
-                    <a href="https://facebook.com/saftechresolutions" target="_blank" class="w-9 h-9 rounded-lg glass flex items-center justify-center hover:text-sky-400"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/saftechresolutions" target="_blank" class="w-9 h-9 rounded-lg glass flex items-center justify-center hover:text-sky-400"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/254794963537" target="_blank" class="w-9 h-9 rounded-lg glass flex items-center justify-center hover:text-green-400"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://tiktok.com/@saftechresolutions" target="_blank" class="w-9 h-9 rounded-lg glass flex items-center justify-center hover:text-sky-400"><i class="fab fa-tiktok"></i></a>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass p-8 md:p-10 rounded-3xl border border-slate-800">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                         alt="Alex Safari" class="w-full h-64 object-cover rounded-2xl mb-6">
+                    <h3 class="text-2xl font-bold mb-2">Alex Safari</h3>
+                    <p class="text-sky-400 mb-4">Founder & Lead Software Engineer</p>
+                    <p class="text-slate-400 text-sm">15+ years of combined experience in software development, system architecture, and technical leadership.</p>
                 </div>
-            </div>
-            <div>
-                <h5 class="font-bold text-lg mb-4">Quick links</h5>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><a href="#services" class="hover:text-sky-400">Services</a></li>
-                    <li><a href="#demos" class="hover:text-sky-400">Live Demos</a></li>
-                    <li><a href="#concepts" class="hover:text-sky-400">Concepts</a></li>
-                    <li><a href="#portfolio" class="hover:text-sky-400">Portfolio</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold text-lg mb-4">Contact</h5>
-                <ul class="space-y-2 text-sm text-slate-400">
-                    <li><i class="fas fa-phone-alt text-sky-400 w-6 inline-block"></i> 0794 963537</li>
-                    <li><i class="fab fa-whatsapp text-green-400 w-6 inline-block"></i> 0794 963537</li>
-                    <li><i class="fas fa-envelope text-sky-400 w-6 inline-block"></i> saftechresolutions@gmail.com</li>
-                    <li><i class="fas fa-map-marker-alt text-sky-400 w-6 inline-block"></i> Nairobi · Countrywide</li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-bold text-lg mb-4">Service areas</h5>
-                <p class="text-sm text-slate-400">Nairobi, Kiambu, Mombasa, Kisumu, and remote worldwide. We come to you or work remotely.</p>
-                <div class="mt-4 flex items-center gap-2 text-xs bg-slate-800/40 p-3 rounded-xl">
-                    <i class="fas fa-bolt text-yellow-500"></i>
-                    <span class="text-slate-300">Response within 2 hours</span>
+                
+                <div class="glass p-8 md:p-10 rounded-3xl border border-slate-800">
+                    <h3 class="text-2xl font-bold mb-6">Quick Contact</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl">
+                            <i class="fas fa-phone-alt text-sky-400 text-xl w-8"></i>
+                            <div>
+                                <p class="text-xs text-slate-400">Call Us</p>
+                                <p class="font-bold text-sm md:text-base">0794 963537 / 0707 441702</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl">
+                            <i class="fab fa-whatsapp text-green-400 text-xl w-8"></i>
+                            <div>
+                                <p class="text-xs text-slate-400">WhatsApp</p>
+                                <p class="font-bold text-sm md:text-base">0794 963537</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl">
+                            <i class="fas fa-envelope text-sky-400 text-xl w-8"></i>
+                            <div>
+                                <p class="text-xs text-slate-400">Email</p>
+                                <p class="font-bold text-sm break-all">saftechresolutions@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-xl">
+                            <i class="fas fa-rocket text-purple-400 text-xl w-8"></i>
+                            <div>
+                                <p class="text-xs text-slate-400">Live Systems</p>
+                                <p class="font-bold text-sm"><a href="#demos" class="hover:text-sky-400">12+ Live Demos</a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-600">
-            <span>© 2026 SAFTECH RESOLUTIONS — directed by Alex Safari</span>
-            <span class="mt-2 sm:mt-0">
-                <a href="#" class="hover:text-sky-400 mx-2">Privacy</a> • 
-                <a href="#" class="hover:text-sky-400 mx-2">Terms</a> • 
-                <span class="text-sky-400">countrywide service</span>
-            </span>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 border-t border-slate-800 bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="md:col-span-2">
+                    <h4 class="text-2xl font-extrabold mb-6 tracking-tighter uppercase">
+                        SAFTECH <span class="text-sky-400">RESOLUTIONS</span>
+                    </h4>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Expert technical resolutions for modern business challenges. Enterprise software, networking infrastructure, and cloud solutions.
+                    </p>
+                    <div class="flex gap-3 flex-wrap">
+                        <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:text-sky-400 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:text-sky-400 transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:text-sky-400 transition"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:text-sky-400 transition"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:text-green-400 transition"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-lg glass flex items-center justify-center hover:text-blue-400 transition"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-slate-400 text-sm">
+                        <li><a href="#services" class="hover:text-sky-400 transition">Services</a></li>
+                        <li><a href="#demos" class="hover:text-sky-400 transition">Live Demos</a></li>
+                        <li><a href="#portfolio" class="hover:text-sky-400 transition">Portfolio</a></li>
+                        <li><a href="#networking" class="hover:text-sky-400 transition">Networking</a></li>
+                        <li><a href="#quote" class="hover:text-sky-400 transition">Get a Quote</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Service Area</h4>
+                    <p class="text-slate-400 text-sm mb-4 flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt text-sky-400 mt-1"></i>
+                        <span>Nairobi, Kiambu County, and remote worldwide.</span>
+                    </p>
+                    <div class="h-1 w-16 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mb-4"></div>
+                    <div class="flex items-center gap-3 text-sm">
+                        <i class="fas fa-bolt text-yellow-500"></i>
+                        <span class="text-slate-300">Response: &lt; 2 hours</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16 pt-8 border-t border-slate-800 text-slate-600 text-xs tracking-widest">
+                &copy; 2026 SAFTECH RESOLUTIONS | ALL RIGHTS RESERVED | Directed by Alex Safari
+                <div class="mt-2 text-slate-700 flex flex-wrap justify-center gap-2">
+                    <a href="https://pharmacy-system.pages.dev" target="_blank" class="hover:text-sky-400">Pharmacy</a><span>•</span>
+                    <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="hover:text-sky-400">Chemist</a><span>•</span>
+                    <a href="https://botique-management.pages.dev" target="_blank" class="hover:text-pink-400">Boutique</a><span>•</span>
+                    <a href="https://stock-management-inventory.pages.dev" target="_blank" class="hover:text-emerald-400">StockMaster</a><span>•</span>
+                    <a href="https://electricals-management-system.pages.dev" target="_blank" class="hover:text-orange-400">ElectroPOS</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
-        function toggleConcept(el) {
-            const full = el.querySelector('.concept-full');
-            const short = el.querySelector('.concept-short');
-            if (full && short) {
-                if (full.classList.contains('hidden')) {
-                    full.classList.remove('hidden');
-                    short.classList.add('hidden');
-                } else {
-                    full.classList.add('hidden');
-                    short.classList.remove('hidden');
-                }
-            }
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+            document.getElementById('menuOverlay').classList.toggle('active');
+            document.getElementById('hamburger').classList.toggle('active');
         }
-        document.getElementById('mobile-menu-btn')?.addEventListener('click', function(e){
-            document.getElementById('mobile-nav').classList.toggle('hidden');
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
         });
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const id = this.getAttribute('href');
-                if(id==="#") return;
-                const target = document.querySelector(id);
-                if(target) target.scrollIntoView({behavior:'smooth'});
-                document.getElementById('mobile-nav')?.classList.add('hidden');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
     </script>
