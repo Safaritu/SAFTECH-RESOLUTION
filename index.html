@@ -20,14 +20,12 @@
         }
         .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .glass { background: rgba(15, 23, 42, 0.7); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .glass-card { background: rgba(15, 23, 42, 0.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border: 1px solid rgba(56, 189, 248, 0.1); }
         .btn-primary { background: linear-gradient(90deg, #0ea5e9, #6366f1); transition: all 0.3s ease; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 30px -10px rgba(14, 165, 233, 0.4); }
-        .card-hover:hover { border-color: #38bdf8; background: rgba(30, 41, 59, 0.6); transform: translateY(-4px); }
         section { padding: 80px 0; }
         @media (max-width: 640px) { section { padding: 60px 0; } }
         
-        /* demo / concept card enhancements */
+        /* concept cards */
         .concept-card {
             transition: all 0.25s ease;
             height: 100%;
@@ -57,52 +55,32 @@
             border-radius: 30px;
             display: inline-block;
         }
-        .network-tag {
-            background: rgba(14, 165, 233, 0.1);
-            border: 1px solid rgba(14, 165, 233, 0.3);
-            color: #7dd3fc;
+        .demo-full-desc {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #cbd5e1;
         }
-        .btn-outline-wa {
-            background: transparent;
-            border: 1px solid #25D366;
-            color: #25D366;
-            transition: all 0.2s;
-        }
-        .btn-outline-wa:hover {
-            background: #25D366;
-            color: #0f172a;
-        }
-        .img-placeholder {
-            background: linear-gradient(145deg, #1e293b, #0f172a);
-            min-height: 160px;
-            border-radius: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #334155;
-            font-size: 2rem;
-            border: 1px solid #334155;
+        .footer-gradient {
+            background: radial-gradient(circle at 20% 30%, rgba(56,189,248,0.1), transparent 60%);
         }
         /* mobile tap improvements */
         a, button { cursor: pointer; -webkit-tap-highlight-color: rgba(56, 189, 248, 0.2); }
-        .live-demo-link, .whatsapp-cta { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
-        @media (max-width: 480px) {
-            .grid { gap: 1rem; }
-            .text-5xl { font-size: 2.5rem; }
-            .p-8 { padding: 1.25rem; }
-            .demo-badge { font-size: 0.65rem; padding: 0.2rem 0.7rem; }
+        @media (max-width: 640px) {
+            .mobile-full-btn { display: flex !important; }
+            .hero-buttons-mobile { flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- Navigation (unchanged, but ensures mobile tap) -->
+    <!-- Navigation (enhanced mobile: all buttons visible) -->
     <nav class="fixed w-full z-[100] glass border-b border-slate-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
             <span class="text-lg sm:text-xl font-extrabold tracking-tighter uppercase">
                 SAFTECH <span class="text-sky-400">RESOLUTIONS</span>
             </span>
-            <div class="space-x-4 hidden md:flex text-sm font-semibold items-center">
+            <!-- desktop menu -->
+            <div class="hidden md:flex space-x-4 text-sm font-semibold items-center">
                 <a href="#services" class="hover:text-sky-400 transition">Services</a>
                 <a href="#demos" class="hover:text-sky-400 transition">Live Demos</a>
                 <a href="#concepts" class="hover:text-sky-400 transition">Concepts</a>
@@ -110,40 +88,44 @@
                 <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
                 <a href="#quote" class="px-6 py-2.5 btn-primary rounded-full text-white text-xs uppercase tracking-wider font-bold">Get a Quote</a>
             </div>
-            <!-- mobile menu icon (simple) -->
-            <div class="md:hidden flex items-center">
-                <a href="#quote" class="mr-3 text-xs font-bold btn-primary px-4 py-2 rounded-full">Quote</a>
-                <button id="mobile-menu-btn" class="text-white text-2xl" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">☰</button>
+            <!-- mobile menu: both quote and hamburger -->
+            <div class="md:hidden flex items-center gap-2">
+                <a href="#quote" class="text-xs font-bold btn-primary px-4 py-2 rounded-full">Quote</a>
+                <a href="#demos" class="text-xs font-bold glass px-4 py-2 rounded-full border border-sky-400/30">Demos</a>
+                <a href="#concepts" class="text-xs font-bold glass px-4 py-2 rounded-full border border-sky-400/30">Ideas</a>
+                <button id="mobile-menu-btn" class="text-white text-2xl ml-1" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">☰</button>
             </div>
         </div>
-        <!-- mobile dropdown (simple) -->
+        <!-- mobile dropdown (extra links) -->
         <div id="mobile-nav" class="hidden md:hidden glass border-t border-slate-700 p-4 flex flex-col space-y-3 text-sm">
             <a href="#services" class="hover:text-sky-400 py-2">Services</a>
-            <a href="#demos" class="hover:text-sky-400 py-2">Live Demos</a>
-            <a href="#concepts" class="hover:text-sky-400 py-2">Concepts</a>
             <a href="#portfolio" class="hover:text-sky-400 py-2">Portfolio</a>
             <a href="#contact" class="hover:text-sky-400 py-2">Contact</a>
         </div>
     </nav>
 
-    <!-- Hero section (same structure, mobile optimized) -->
+    <!-- Hero with full mobile buttons (now visible) -->
     <header class="pt-32 pb-16 px-4 sm:px-6 relative overflow-hidden">
         <div class="absolute top-20 right-0 -z-10 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-sky-500/10 blur-[120px] rounded-full"></div>
         <div class="absolute bottom-0 left-0 -z-10 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-purple-500/10 blur-[120px] rounded-full"></div>
         <div class="max-w-7xl mx-auto">
-            <div class="inline-block px-5 py-2 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-bold mb-6 tracking-widest uppercase floating-badge"># SAFTECH RESOLUTIONS</div>
+            <div class="inline-block px-5 py-2 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm font-bold mb-6 tracking-widest uppercase"># SAFTECH RESOLUTIONS</div>
             <div class="grid md:grid-cols-2 gap-10 items-center">
                 <div>
                     <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-4 leading-[1.1]">INNOVATING <span class="gradient-text">RETAIL</span> & WEB</h1>
                     <div class="h-1.5 w-24 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mb-8"></div>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-tight">Try Our <span class="text-sky-400">Live Demos</span> + 8 New Concepts</h2>
-                    <p class="text-slate-400 text-base sm:text-lg mb-8 max-w-xl">Founded by <span class="text-white font-bold">Alex Safari</span>, Saftech Resolutions delivers POS, custom web, and expert support.</p>
-                    <div class="flex flex-wrap gap-3 sm:gap-4">
-                        <a href="#demos" class="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 btn-primary font-bold rounded-xl text-base sm:text-lg group">
-                            <i class="fas fa-play-circle text-xl sm:text-2xl"></i> Try Demos <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-tight">Try Our <span class="text-sky-400">Live Demos</span> + 8 Tailored Concepts</h2>
+                    <p class="text-slate-400 text-base sm:text-lg mb-8 max-w-xl">Founded by <span class="text-white font-bold">Alex Safari</span>, serving clients <span class="text-sky-400">countrywide</span> with POS, custom web & networking.</p>
+                    <!-- all buttons visible on mobile now -->
+                    <div class="flex flex-wrap gap-3 hero-buttons-mobile">
+                        <a href="#demos" class="inline-flex items-center gap-2 px-6 py-3 btn-primary font-bold rounded-xl text-base group">
+                            <i class="fas fa-play-circle"></i> Live Demos <i class="fas fa-arrow-right group-hover:translate-x-1"></i>
                         </a>
-                        <a href="https://wa.me/254794963537" target="_blank" class="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 glass border border-slate-700 hover:border-green-400 font-bold rounded-xl text-base sm:text-lg">
-                            <i class="fab fa-whatsapp text-green-400 text-xl sm:text-2xl"></i> WhatsApp
+                        <a href="#concepts" class="inline-flex items-center gap-2 px-6 py-3 glass border border-slate-700 hover:border-sky-400 font-bold rounded-xl text-base">
+                            <i class="fas fa-lightbulb"></i> Concepts
+                        </a>
+                        <a href="https://wa.me/254794963537" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 glass border border-slate-700 hover:border-green-400 font-bold rounded-xl text-base">
+                            <i class="fab fa-whatsapp text-green-400"></i> WhatsApp
                         </a>
                     </div>
                 </div>
@@ -156,89 +138,115 @@
         </div>
     </header>
 
-    <!-- Stats (unchanged) -->
+    <!-- Stats (countrywide mention) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 -mt-8 mb-16 sm:mb-24">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 glass p-4 sm:p-8 rounded-3xl border border-slate-800/50">
             <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">50+</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Projects</p></div>
             <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">100%</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Satisfaction</p></div>
-            <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">24/7</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Support</p></div>
+            <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">🌍</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Countrywide</p></div>
             <div class="text-center"><h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">5+8</h3><p class="text-slate-400 text-xs sm:text-sm mt-2">Live + Concepts</p></div>
         </div>
     </div>
 
-    <!-- LIVE DEMOS SECTION (5 systems unchanged, but ensure mobile card size) -->
+    <!-- LIVE DEMOS with full descriptions (client-ready) -->
     <section id="demos" class="bg-slate-900/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="mb-12">
-                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">Try Before You Buy</span>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4">Live Interactive Demos</h2>
-                <p class="text-slate-400 text-base sm:text-lg max-w-3xl">Five fully functional systems — click, explore, and test drive.</p>
+                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">currently live — used by clients</span>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4">Production Demos</h2>
+                <p class="text-slate-400 text-base sm:text-lg max-w-3xl">These systems are running live. Click to explore full functionality.</p>
                 <div class="h-1.5 w-20 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mt-4"></div>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
-                <!-- Demo 1 Pharmacy (shortened for brevity, same as before but mobile adapted) -->
+                <!-- Demo 1 Pharmacy with full description -->
                 <div class="group relative demo-card">
                     <div class="glass rounded-3xl overflow-hidden border-2 border-sky-500/30 hover:border-sky-400 h-full flex flex-col">
-                        <div class="relative h-48 sm:h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1576671081837-49000212a370?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition"><div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent"></div><div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> LIVE</div></div>
+                        <div class="relative h-48 sm:h-56 overflow-hidden"><img src="https://images.unsplash.com/photo-1576671081837-49000212a370?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-110 transition"><div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent"></div><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3 py-1 rounded-full text-xs font-bold">LIVE</div></div>
                         <div class="p-5 sm:p-8 flex-1 flex flex-col">
                             <h3 class="text-xl sm:text-2xl font-bold mb-2">Pharmacy Management</h3>
-                            <p class="text-slate-400 text-xs sm:text-sm mb-4">9 modules: expiry, low stock, supplier orders, debt tracking.</p>
-                            <div class="flex flex-wrap gap-2 mb-4"><span class="tech-tag">Expiry</span><span class="tech-tag">Alerts</span><span class="tech-tag">Debt</span></div>
-                            <div class="flex flex-col sm:flex-row gap-2 mt-auto"><a href="https://pharmacy-system.pages.dev" target="_blank" class="live-demo-link flex-1 px-4 py-3 rounded-full text-sm"><i class="fas fa-external-link-alt"></i> Launch</a><a href="https://github.com/Safaritu/PHARMACY" target="_blank" class="inline-flex justify-center px-4 py-3 glass border border-slate-700 rounded-full text-sm"><i class="fab fa-github"></i></a></div>
+                            <div class="demo-full-desc mb-4 space-y-1">
+                                <p><i class="fas fa-check-circle text-sky-400 mr-1 text-xs"></i> <strong>Expiry tracking</strong> – auto alerts before expiry.</p>
+                                <p><i class="fas fa-check-circle text-sky-400 mr-1 text-xs"></i> <strong>Low stock alerts</strong> – never run out.</p>
+                                <p><i class="fas fa-check-circle text-sky-400 mr-1 text-xs"></i> <strong>Debt & credit</strong> – customer balance tracking.</p>
+                                <p><i class="fas fa-check-circle text-sky-400 mr-1 text-xs"></i> <strong>Supplier orders</strong> – automated purchase drafts.</p>
+                                <p class="mt-2 text-xs text-slate-500">9 modules · used by 6 pharmacies</p>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-2 mt-auto"><a href="https://pharmacy-system.pages.dev" target="_blank" class="live-demo-link flex-1 px-4 py-3 rounded-full text-sm bg-gradient-to-r from-sky-500 to-indigo-500 text-white text-center"><i class="fas fa-external-link-alt"></i> Launch Demo</a></div>
                         </div>
                     </div>
                 </div>
-                <!-- Demo 2 Chemist -->
+                <!-- Demo 2 Chemist full desc -->
                 <div class="group relative demo-card">
-                    <div class="glass rounded-3xl overflow-hidden border-2 border-purple-500/30 hover:border-purple-400 h-full">
-                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"><div class="demo-badge"><i class="fas fa-circle text-green-400"></i> LIVE</div></div>
-                        <div class="p-5 sm:p-8"><h3 class="text-xl sm:text-2xl font-bold">Chemist Management</h3><p class="text-slate-400 text-sm mb-4">Drug health, expiry alerts, credit tracking.</p><div class="flex gap-2 mt-4"><a href="https://chemist-managementsystem.pages.dev" target="_blank" class="live-demo-link flex-1" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">Launch</a></div></div>
+                    <div class="glass rounded-3xl overflow-hidden border-2 border-purple-500/30 hover:border-purple-400 h-full flex flex-col">
+                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3 py-1 rounded-full text-xs">LIVE</div></div>
+                        <div class="p-5 sm:p-8">
+                            <h3 class="text-xl sm:text-2xl font-bold mb-2">Chemist Management</h3>
+                            <div class="demo-full-desc mb-4">
+                                <p>💊 <strong>Drug health monitor</strong> – track batch quality & expiry.</p>
+                                <p>📉 <strong>Expiry alerts</strong> – 30/15/5 day warnings.</p>
+                                <p>💳 <strong>Customer credit</strong> with limit control.</p>
+                                <p>📊 <strong>Sales analytics</strong> per category.</p>
+                            </div>
+                            <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="live-demo-link block w-full text-center px-4 py-3 rounded-full text-sm bg-gradient-to-r from-purple-500 to-purple-700">Launch Demo</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Demo 3 Boutique -->
+                <!-- Demo 3 Boutique full desc -->
                 <div class="group relative demo-card">
                     <div class="glass rounded-3xl overflow-hidden border-2 border-pink-500/30 hover:border-pink-400 h-full">
-                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"><div class="demo-badge">LIVE</div></div>
-                        <div class="p-5 sm:p-8"><h3 class="text-xl sm:text-2xl font-bold">Boutique Management</h3><p class="text-sm">VIP, size tracking, layaway.</p><a href="https://botique-management.pages.dev" target="_blank" class="live-demo-link mt-4 w-full" style="background:linear-gradient(135deg,#ec4899,#d946ef)">Launch</a></div>
+                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover"><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3 py-1">LIVE</div></div>
+                        <div class="p-5 sm:p-8">
+                            <h3 class="text-xl sm:text-2xl font-bold">Boutique POS</h3>
+                            <div class="demo-full-desc text-sm"><p>👑 <strong>VIP loyalty</strong> – points & rewards.<br>📏 <strong>Size/color tracking</strong>.<br>🛍️ <strong>Layaway</strong> with payment plans.<br>🔄 <strong>Easy returns</strong> & exchange.</p></div>
+                            <a href="https://botique-management.pages.dev" target="_blank" class="live-demo-link mt-4 w-full block text-center px-4 py-3 rounded-full text-sm bg-gradient-to-r from-pink-500 to-pink-600">Launch Demo</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Demo 4 StockMaster -->
+                <!-- Demo 4 StockMaster full desc -->
                 <div class="group relative demo-card">
                     <div class="glass rounded-3xl overflow-hidden border-2 border-emerald-500/30 hover:border-emerald-400 h-full">
-                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"><div class="demo-badge">LIVE</div></div>
-                        <div class="p-5 sm:p-8"><h3 class="text-xl sm:text-2xl font-bold">StockMaster</h3><p class="text-sm">Multi-shop, suppliers, stock tracking.</p><a href="https://stock-management-inventory.pages.dev" target="_blank" class="live-demo-link mt-4 w-full" style="background:linear-gradient(135deg,#10b981,#059669)">Launch</a></div>
+                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3">LIVE</div></div>
+                        <div class="p-5 sm:p-8">
+                            <h3 class="text-xl sm:text-2xl font-bold">StockMaster</h3>
+                            <div class="demo-full-desc"><p>🏬 Multi‑shop inventory.<br>📦 Real‑time stock tracking.<br>📑 Supplier management & reorder.<br>📈 Demand forecasting.</p></div>
+                            <a href="https://stock-management-inventory.pages.dev" target="_blank" class="live-demo-link mt-4 w-full block text-center px-4 py-3 rounded-full text-sm bg-gradient-to-r from-emerald-500 to-emerald-600">Launch Demo</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Demo 5 ElectroPOS -->
+                <!-- Demo 5 ElectroPOS full desc -->
                 <div class="group relative demo-card">
                     <div class="glass rounded-3xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-400 h-full">
-                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80"><div class="demo-badge">LIVE</div></div>
-                        <div class="p-5 sm:p-8"><h3 class="text-xl sm:text-2xl font-bold">ElectroPOS</h3><p class="text-sm">Warranty, repairs, installations.</p><a href="https://electricals-management-system.pages.dev" target="_blank" class="live-demo-link mt-4 w-full" style="background:linear-gradient(135deg,#f59e0b,#d97706)">Launch</a></div>
+                        <div class="relative h-48 sm:h-56"><img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80"><div class="demo-badge absolute top-4 right-4 bg-green-500/90 px-3">LIVE</div></div>
+                        <div class="p-5 sm:p-8">
+                            <h3 class="text-xl sm:text-2xl font-bold">ElectroPOS</h3>
+                            <div class="demo-full-desc"><p>🛡️ Warranty tracking by serial.<br>🔧 Repair job management.<br>📅 Installation scheduling.<br>⚡ Low stock alerts for components.</p></div>
+                            <a href="https://electricals-management-system.pages.dev" target="_blank" class="live-demo-link mt-4 w-full block text-center px-4 py-3 rounded-full text-sm bg-gradient-to-r from-orange-500 to-orange-600">Launch Demo</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- NEW CONCEPTS SECTION (8 ideas with full description on click & WA/Quote) -->
+    <!-- NEW CONCEPTS with full descriptions and images (placeholder icons) -->
     <section id="concepts" class="py-16 sm:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="mb-12">
-                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">coming soon / tailor‑made</span>
+                <span class="text-sky-400 text-sm font-bold uppercase tracking-widest">tailor‑made solutions</span>
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 mb-4">Concept Library</h2>
-                <p class="text-slate-400 text-base sm:text-lg max-w-3xl">Click any card to see full description. Each can be custom‑built for you.</p>
+                <p class="text-slate-400 text-base sm:text-lg max-w-3xl">Click any card to read full explanation. Each can be built exclusively for you.</p>
                 <div class="h-1.5 w-20 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mt-4"></div>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
-                <!-- 1: Salon & Spa Booker -->
+                <!-- 1 Salon -->
                 <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
                     <div class="inner">
-                        <div class="img-placeholder mb-4"><i class="fas fa-cut text-4xl text-sky-400/40"></i></div>
-                        <h3 class="text-xl font-bold flex items-center gap-2">💇 Salon & Spa Booker <span class="concept-badge">concept</span></h3>
-                        <p class="text-slate-400 text-sm mt-2 line-clamp-2 concept-short">Online booking, staff roster, inventory & loyalty.</p>
-                        <div class="hidden concept-full mt-4 text-sm text-slate-300 space-y-3">
-                            <p>📅 <strong>How it works:</strong> clients book 24/7, automatic reminder SMS, staff commission tracking, product usage linked to appointments. Customizable for single salon or franchise.</p>
-                            <p>💡 <em>We build exactly for your workflow.</em></p>
+                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-cut text-5xl text-sky-400/40"></i></div>
+                        <h3 class="text-xl font-bold">💇 Salon & Spa Booker</h3>
+                        <p class="text-slate-400 text-sm mt-2 concept-short">Online booking, staff roster, inventory & loyalty.</p>
+                        <div class="hidden concept-full mt-4 text-sm text-slate-300 space-y-2">
+                            <p><strong>How it works:</strong> Clients book 24/7 via website; automated SMS reminders; staff commission tracking; product usage tied to appointments. Customizable for single or franchise.</p>
+                            <p><i class="fas fa-check text-sky-400"></i> Inventory for products<br><i class="fas fa-check text-sky-400"></i> Loyalty points & promotions</p>
                         </div>
                         <div class="flex gap-3 mt-5 pt-3 border-t border-slate-700/50">
                             <a href="https://wa.me/254794963537?text=I'm%20interested%20in%20Salon%20%26%20Spa%20Booker" target="_blank" class="text-green-400 text-sm flex items-center gap-1" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -246,73 +254,73 @@
                         </div>
                     </div>
                 </div>
-                <!-- 2: PPPoE & Billing Manager -->
+                <!-- 2 PPPoE -->
                 <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
                     <div class="inner">
-                        <div class="img-placeholder mb-4"><i class="fas fa-network-wired text-4xl text-sky-400/40"></i></div>
+                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-network-wired text-5xl text-sky-400/40"></i></div>
                         <h3 class="text-xl font-bold">🌐 PPPoE & Billing Manager</h3>
-                        <p class="text-slate-400 text-sm mt-2 concept-short">ISP management: user auth, quota, auto‑billing.</p>
-                        <div class="hidden concept-full mt-4 text-sm text-slate-300 space-y-3">
-                            <p>🔧 <strong>How it works:</strong> MikroTik integration, automated billing via MPESA, bandwidth management, voucher generation. Ideal for WISPs and small ISPs.</p>
-                            <p>➕ <strong>Networking ideas:</strong> hotspot gateway, bandwidth graphing, usage alerts.</p>
+                        <p class="text-sm mt-2 concept-short">ISP management: user auth, quota, auto‑billing.</p>
+                        <div class="hidden concept-full mt-4 text-sm space-y-2">
+                            <p><strong>How it works:</strong> MikroTik integration, automated MPESA billing, bandwidth management, voucher generation. Ideal for WISPs & small ISPs.</p>
+                            <p>➕ <span class="text-sky-300">Add‑ons:</span> hotspot gateway, bandwidth graphing, usage alerts.</p>
                         </div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t border-slate-700/50"><a href="https://wa.me/254794963537?text=PPPoE%20%26%20Billing%20Manager" target="_blank" class="text-green-400 text-sm" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto" onclick="event.stopPropagation()">Quote</a></div>
+                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=PPPoE%20%26%20Billing%20Manager" target="_blank" class="text-green-400 text-sm" onclick="event.stopPropagation()"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto" onclick="event.stopPropagation()">Quote</a></div>
                     </div>
                 </div>
-                <!-- 3: Niche ERP for "Hard" Industries (mining, construction) -->
+                <!-- 3 Hard ERP -->
                 <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
                     <div class="inner">
-                        <div class="img-placeholder mb-4"><i class="fas fa-hard-hat text-4xl text-amber-400/40"></i></div>
+                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-hard-hat text-5xl text-amber-400/40"></i></div>
                         <h3 class="text-xl font-bold">⛏️ Niche ERP (Hard Industries)</h3>
                         <p class="text-sm mt-2 concept-short">Mining, construction: equipment tracking, compliance.</p>
-                        <div class="hidden concept-full mt-4 text-sm text-slate-300"><p>Heavy equipment maintenance, safety permits, fuel consumption, project costing. Offline‑capable mobile apps for field workers.</p></div>
-                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Niche%20ERP%20Hard%20Industries" target="_blank" class="text-green-400 text-sm" onclick="event.stopPropagation()">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto" onclick="event.stopPropagation()">Quote</a></div>
+                        <div class="hidden concept-full mt-4 text-sm"><p>Heavy equipment maintenance, safety permits, fuel consumption, project costing. Offline‑capable mobile apps for field workers.</p></div>
+                        <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Niche%20ERP%20Hard%20Industries" target="_blank" class="text-green-400 text-sm" onclick="event.stopPropagation()">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
                     </div>
                 </div>
-                <!-- 4: WaaS for Solar & Electrical Contractors -->
+                <!-- 4 WaaS Solar -->
                 <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
                     <div class="inner">
-                        <div class="img-placeholder mb-4"><i class="fas fa-solar-panel text-4xl text-yellow-400/40"></i></div>
+                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-solar-panel text-5xl text-yellow-400/40"></i></div>
                         <h3 class="text-xl font-bold">☀️ WaaS (Solar/Electrical)</h3>
                         <p class="text-sm mt-2 concept-short">Proposal, design, CRM, maintenance scheduling.</p>
-                        <div class="hidden concept-full mt-4 text-sm"><p>Design tool for panel layout, automatic BOQ, project management with payment milestones. Also handles warranty claims.</p></div>
+                        <div class="hidden concept-full mt-4 text-sm"><p>Design tool for panel layout, automatic BOQ, project management with payment milestones. Handles warranty claims.</p></div>
                         <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=WaaS%20Solar%20Electrical" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
                     </div>
                 </div>
-                <!-- 5: Med-Bill (Pharmacy & Clinic Billing SaaS) -->
+                <!-- 5 Med-Bill -->
                 <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
                     <div class="inner">
-                        <div class="img-placeholder mb-4"><i class="fas fa-file-invoice-dollar text-4xl text-emerald-400/40"></i></div>
+                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-file-invoice-dollar text-5xl text-emerald-400/40"></i></div>
                         <h3 class="text-xl font-bold">💊 Med-Bill (Clinic SaaS)</h3>
                         <p class="text-sm mt-2 concept-short">Multi‑tenant billing, insurance claims, e‑prescriptions.</p>
                         <div class="hidden concept-full mt-4 text-sm"><p>Dashboard for clinics & pharmacies: claim submission, inventory sync, patient records. HL7/FHIR optional.</p></div>
                         <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Med-Bill%20SaaS" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
                     </div>
                 </div>
-                <!-- 6: Rent-Logic (Niche Property Management) -->
+                <!-- 6 Rent-Logic -->
                 <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
                     <div class="inner">
-                        <div class="img-placeholder mb-4"><i class="fas fa-building text-4xl text-indigo-400/40"></i></div>
+                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-building text-5xl text-indigo-400/40"></i></div>
                         <h3 class="text-xl font-bold">🏢 Rent‑Logic</h3>
                         <p class="text-sm mt-2 concept-short">Tenant, rent, maintenance, automated reminders.</p>
-                        <div class="hidden concept-full mt-4 text-sm"><p>For small to medium landlords: rent collection, deposit tracking, repair requests, financial reports. Portal for tenants.</p></div>
+                        <div class="hidden concept-full mt-4 text-sm"><p>For small to medium landlords: rent collection, deposit tracking, repair requests, financial reports. Tenant portal.</p></div>
                         <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Rent-Logic" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
                     </div>
                 </div>
-                <!-- 7: Agro-SaaS (Small‑Scale Farm Manager) -->
+                <!-- 7 Agro-SaaS -->
                 <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
                     <div class="inner">
-                        <div class="img-placeholder mb-4"><i class="fas fa-tractor text-4xl text-green-400/40"></i></div>
+                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-tractor text-5xl text-green-400/40"></i></div>
                         <h3 class="text-xl font-bold">🌾 Agro‑SaaS</h3>
                         <p class="text-sm mt-2 concept-short">Crop cycles, livestock, inventory, cooperative mgmt.</p>
                         <div class="hidden concept-full mt-4 text-sm"><p>Smallholder farm management: planting calendar, input store, harvest tracking, group savings/loans for cooperatives.</p></div>
                         <div class="flex gap-3 mt-5 pt-3 border-t"><a href="https://wa.me/254794963537?text=Agro-SaaS" target="_blank" class="text-green-400 text-sm">WhatsApp</a><a href="#quote" class="text-sky-400 text-sm ml-auto">Quote</a></div>
                     </div>
                 </div>
-                <!-- 8: Networking / Infrastructure Monitor (extra idea) -->
+                <!-- 8 NetWatch -->
                 <div class="concept-card cursor-pointer" onclick="toggleConcept(this)">
                     <div class="inner">
-                        <div class="img-placeholder mb-4"><i class="fas fa-diagram-project text-4xl text-blue-400/40"></i></div>
+                        <div class="img-placeholder mb-4 h-32 flex items-center justify-center bg-slate-800/50 rounded-2xl"><i class="fas fa-diagram-project text-5xl text-blue-400/40"></i></div>
                         <h3 class="text-xl font-bold">📡 NetWatch NMS</h3>
                         <p class="text-sm mt-2 concept-short">Network monitoring, SNMP, alerts, bandwidth graphing.</p>
                         <div class="hidden concept-full mt-4 text-sm space-y-2">
@@ -323,18 +331,17 @@
                     </div>
                 </div>
             </div>
-            <!-- extra networking ideas note -->
+            <!-- Networking note -->
             <div class="mt-12 glass p-6 rounded-3xl border border-sky-500/20 text-center">
-                <p class="text-slate-300"><i class="fas fa-lightbulb text-amber-400 mr-2"></i> <strong>More networking ideas:</strong> Hotspot manager with SMS vouchers, multi‑WAN load balancer configurator, IPAM & DHCP monitoring, and custom SNMP‑based graphing tools. All can be bundled with our PPPoE & Billing Manager.</p>
+                <p class="text-slate-300"><i class="fas fa-lightbulb text-amber-400 mr-2"></i> <strong>More networking:</strong> Hotspot manager with SMS vouchers, multi‑WAN load balancer, IPAM & DHCP monitoring, custom SNMP tools. Bundle with PPPoE.</p>
             </div>
         </div>
     </section>
 
-    <!-- Services, Portfolio, Quote, Contact (abridged but fully functional, mobile adjusted) -->
-    <!-- Services (short) -->
+    <!-- Services & Portfolio (unchanged, but included) -->
     <section id="services" class="bg-slate-900/20 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-8">Core Services</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8">Core Services — Countrywide</h2>
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="glass p-6 rounded-2xl border border-slate-800"><i class="fas fa-cash-register text-sky-400 text-3xl mb-3"></i><h3 class="font-bold text-lg">POS Systems</h3><p class="text-xs text-slate-400">Retail, pharmacy, boutique, electrical.</p></div>
                 <div class="glass p-6 rounded-2xl border border-slate-800"><i class="fas fa-server text-purple-400 text-3xl mb-3"></i><h3 class="font-bold text-lg">System Dev</h3><p class="text-xs text-slate-400">Java, Spring, microservices.</p></div>
@@ -344,10 +351,9 @@
         </div>
     </section>
 
-    <!-- Portfolio (minimal) -->
     <section id="portfolio" class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-8">Live Projects</h2>
+            <h2 class="text-3xl sm:text-4xl font-bold mb-8">Live Client Projects</h2>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                 <a href="https://pharmacy-system.pages.dev" target="_blank" class="glass p-4 rounded-2xl text-center hover:border-sky-400 border border-transparent">💊 Pharmacy</a>
                 <a href="https://chemist-managementsystem.pages.dev" target="_blank" class="glass p-4 rounded-2xl text-center hover:border-purple-400">🧪 Chemist</a>
@@ -358,12 +364,12 @@
         </div>
     </section>
 
-    <!-- Quote Section (shortened) -->
+    <!-- Quote Section (unchanged) -->
     <section id="quote" class="bg-slate-900/20 py-16">
         <div class="max-w-3xl mx-auto px-4">
             <div class="glass p-8 sm:p-12 rounded-3xl border border-sky-500/20">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Start Your Project</h2>
-                <p class="text-center text-slate-400 mb-8">2h response, 100% custom.</p>
+                <p class="text-center text-slate-400 mb-8">2h response, 100% custom, countrywide service.</p>
                 <form action="mailto:saftechresolutions@gmail.com" method="post" enctype="text/plain" class="space-y-4">
                     <input type="text" name="name" placeholder="Your Name" class="w-full p-4 bg-slate-950/50 border border-slate-700 rounded-xl">
                     <input type="email" name="email" placeholder="Email" class="w-full p-4 bg-slate-950/50 border border-slate-700 rounded-xl">
@@ -374,20 +380,57 @@
         </div>
     </section>
 
-    <!-- Contact & Footer (simple) -->
-    <section id="contact" class="py-16">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-6">
-            <div class="glass p-8 rounded-3xl"><h3 class="text-2xl font-bold mb-4">📞 Contact</h3><p>📱 0794 963537 / 0707 441702</p><p>✉️ saftechresolutions@gmail.com</p><div class="flex gap-4 mt-4"><a href="https://wa.me/254794963537"><i class="fab fa-whatsapp text-3xl text-green-400"></i></a></div></div>
-            <div class="glass p-8 rounded-3xl"><h3 class="text-2xl font-bold mb-4">Alex Safari</h3><p class="text-slate-300">Founder, Lead Engineer. 15+ years exp.</p></div>
+    <!-- UPDATED FOOTER (richer, with location, social, links) -->
+    <footer class="border-t border-slate-800 pt-16 pb-8 bg-slate-950/30 footer-gradient">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div>
+                <h4 class="text-2xl font-extrabold tracking-tighter mb-4">SAFTECH <span class="text-sky-400">RESOLUTIONS</span></h4>
+                <p class="text-sm text-slate-400 mb-4">Full-scale software engineering, trusted countrywide. Live demos & custom development.</p>
+                <div class="flex gap-3">
+                    <a href="https://facebook.com/saftechresolutions" target="_blank" class="w-9 h-9 rounded-lg glass flex items-center justify-center hover:text-sky-400"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/saftechresolutions" target="_blank" class="w-9 h-9 rounded-lg glass flex items-center justify-center hover:text-sky-400"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/254794963537" target="_blank" class="w-9 h-9 rounded-lg glass flex items-center justify-center hover:text-green-400"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://tiktok.com/@saftechresolutions" target="_blank" class="w-9 h-9 rounded-lg glass flex items-center justify-center hover:text-sky-400"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div>
+                <h5 class="font-bold text-lg mb-4">Quick links</h5>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li><a href="#services" class="hover:text-sky-400">Services</a></li>
+                    <li><a href="#demos" class="hover:text-sky-400">Live Demos</a></li>
+                    <li><a href="#concepts" class="hover:text-sky-400">Concepts</a></li>
+                    <li><a href="#portfolio" class="hover:text-sky-400">Portfolio</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold text-lg mb-4">Contact</h5>
+                <ul class="space-y-2 text-sm text-slate-400">
+                    <li><i class="fas fa-phone-alt text-sky-400 w-6 inline-block"></i> 0794 963537</li>
+                    <li><i class="fab fa-whatsapp text-green-400 w-6 inline-block"></i> 0794 963537</li>
+                    <li><i class="fas fa-envelope text-sky-400 w-6 inline-block"></i> saftechresolutions@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt text-sky-400 w-6 inline-block"></i> Nairobi · Countrywide</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold text-lg mb-4">Service areas</h5>
+                <p class="text-sm text-slate-400">Nairobi, Kiambu, Mombasa, Kisumu, and remote worldwide. We come to you or work remotely.</p>
+                <div class="mt-4 flex items-center gap-2 text-xs bg-slate-800/40 p-3 rounded-xl">
+                    <i class="fas fa-bolt text-yellow-500"></i>
+                    <span class="text-slate-300">Response within 2 hours</span>
+                </div>
+            </div>
         </div>
-    </section>
-
-    <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-600">
-        SAFTECH RESOLUTIONS © 2026 — directed by Alex Safari
+        <div class="max-w-7xl mx-auto px-4 mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-600">
+            <span>© 2026 SAFTECH RESOLUTIONS — directed by Alex Safari</span>
+            <span class="mt-2 sm:mt-0">
+                <a href="#" class="hover:text-sky-400 mx-2">Privacy</a> • 
+                <a href="#" class="hover:text-sky-400 mx-2">Terms</a> • 
+                <span class="text-sky-400">countrywide service</span>
+            </span>
+        </div>
     </footer>
 
     <script>
-        // Toggle concept card full description
         function toggleConcept(el) {
             const full = el.querySelector('.concept-full');
             const short = el.querySelector('.concept-short');
@@ -401,11 +444,9 @@
                 }
             }
         }
-        // mobile menu
         document.getElementById('mobile-menu-btn')?.addEventListener('click', function(e){
             document.getElementById('mobile-nav').classList.toggle('hidden');
         });
-        // smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -413,7 +454,6 @@
                 if(id==="#") return;
                 const target = document.querySelector(id);
                 if(target) target.scrollIntoView({behavior:'smooth'});
-                // close mobile nav if open
                 document.getElementById('mobile-nav')?.classList.add('hidden');
             });
         });
