@@ -478,14 +478,26 @@
         
         .profile-img {
             width: 100%;
-            height: 280px;
+            height: 320px;
             object-fit: cover;
+            object-position: top center;
             border-radius: 20px;
+        }
+        
+        .hero-profile-img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 24px;
         }
         
         @media (max-width: 768px) {
             .profile-img {
-                height: 220px;
+                height: 260px;
+            }
+            .hero-profile-img {
+                height: 280px;
             }
         }
     </style>
@@ -547,7 +559,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Personal Image -->
     <header class="pt-28 md:pt-36 pb-16 md:pb-20 px-4 relative overflow-hidden">
         <div class="absolute top-20 right-0 -z-10 w-[400px] h-[400px] bg-sky-500/20 blur-[100px] rounded-full"></div>
         <div class="absolute bottom-0 left-0 -z-10 w-[300px] h-[300px] bg-purple-500/20 blur-[100px] rounded-full"></div>
@@ -592,8 +604,7 @@
                 
                 <div class="relative mt-8 md:mt-0">
                     <div class="rounded-2xl overflow-hidden shadow-2xl border border-sky-500/20">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                             alt="Developer workspace" class="w-full h-auto object-cover">
+                        <img src="alex.png" alt="Alex Safari - Founder" class="hero-profile-img w-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
                     </div>
                     <div class="absolute -bottom-8 -left-8 w-56 md:w-64 glass rounded-xl overflow-hidden shadow-2xl border border-sky-500/30 floating-badge">
                         <div class="code-dots bg-slate-900/90 py-2 px-3">
@@ -613,7 +624,7 @@
 };</pre>
                     </div>
                     <div class="absolute -top-4 -right-4 glass px-4 py-2 rounded-full border border-sky-500/20 bg-slate-900/90">
-                        <span class="text-xs font-bold">✨ 18+ Enterprise Solutions</span>
+                        <span class="text-xs font-bold">✨ Founder & Lead Engineer</span>
                     </div>
                 </div>
             </div>
@@ -630,7 +641,7 @@
         </div>
     </div>
 
-    <!-- LIVE DEMOS SECTION -->
+    <!-- LIVE DEMOS SECTION - Expanded with 6 demos -->
     <section id="demos" class="bg-slate-900/20 py-12 md:py-16">
         <div class="max-w-7xl mx-auto px-4">
             <div class="mb-10 text-center">
@@ -640,15 +651,23 @@
                 <div class="h-1 w-16 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full mx-auto mt-3"></div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                <!-- 1. Pharmacy Management -->
                 <div class="demo-card"><div class="glass rounded-2xl overflow-hidden border border-sky-500/30 h-full"><div class="relative h-40 overflow-hidden"><img src="https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"><div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> DEMO</div></div><div class="p-4"><h3 class="text-lg font-bold mb-1">Pharmacy Management</h3><p class="text-slate-400 text-xs mb-3">Expiry tracking, supplier orders, profit analytics.</p><button onclick="showQuoteModal('Pharmacy Management Demo')" class="live-demo-link text-xs py-2 px-3 w-full justify-center"><i class="fas fa-rocket"></i> Request Demo</button></div></div></div>
+                <!-- 2. Chemist Management -->
                 <div class="demo-card"><div class="glass rounded-2xl overflow-hidden border border-purple-500/30 h-full"><div class="relative h-40 overflow-hidden"><img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"><div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> DEMO</div></div><div class="p-4"><h3 class="text-lg font-bold mb-1">Chemist Management</h3><p class="text-slate-400 text-xs mb-3">Drug health monitoring, expiry alerts, credit.</p><button onclick="showQuoteModal('Chemist Management Demo')" class="live-demo-link text-xs py-2 px-3 w-full justify-center"><i class="fas fa-rocket"></i> Request Demo</button></div></div></div>
+                <!-- 3. Boutique Management -->
                 <div class="demo-card"><div class="glass rounded-2xl overflow-hidden border border-pink-500/30 h-full"><div class="relative h-40 overflow-hidden"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"><div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> DEMO</div></div><div class="p-4"><h3 class="text-lg font-bold mb-1">Boutique Management</h3><p class="text-slate-400 text-xs mb-3">VIP loyalty, size tracking, layaway.</p><button onclick="showQuoteModal('Boutique Management Demo')" class="live-demo-link text-xs py-2 px-3 w-full justify-center"><i class="fas fa-rocket"></i> Request Demo</button></div></div></div>
+                <!-- 4. StockMaster -->
                 <div class="demo-card"><div class="glass rounded-2xl overflow-hidden border border-emerald-500/30 h-full"><div class="relative h-40 overflow-hidden"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"><div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> DEMO</div></div><div class="p-4"><h3 class="text-lg font-bold mb-1">StockMaster</h3><p class="text-slate-400 text-xs mb-3">Universal inventory management.</p><button onclick="showQuoteModal('StockMaster Demo')" class="live-demo-link text-xs py-2 px-3 w-full justify-center"><i class="fas fa-rocket"></i> Request Demo</button></div></div></div>
+                <!-- 5. Electrical POS System (NEW) -->
+                <div class="demo-card"><div class="glass rounded-2xl overflow-hidden border border-orange-500/30 h-full"><div class="relative h-40 overflow-hidden"><img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"><div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> DEMO</div></div><div class="p-4"><h3 class="text-lg font-bold mb-1">Electrical POS System</h3><p class="text-slate-400 text-xs mb-3">Warranty tracking, repair services, installation scheduling.</p><button onclick="showQuoteModal('Electrical POS System Demo')" class="live-demo-link text-xs py-2 px-3 w-full justify-center"><i class="fas fa-rocket"></i> Request Demo</button></div></div></div>
+                <!-- 6. House Tenant Management (NEW) -->
+                <div class="demo-card"><div class="glass rounded-2xl overflow-hidden border border-teal-500/30 h-full"><div class="relative h-40 overflow-hidden"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"><div class="demo-badge"><i class="fas fa-circle text-green-400 text-xs mr-1"></i> DEMO</div></div><div class="p-4"><h3 class="text-lg font-bold mb-1">House Tenant Management</h3><p class="text-slate-400 text-xs mb-3">Rent collection, maintenance tracking, lease management.</p><button onclick="showQuoteModal('House Tenant Management Demo')" class="live-demo-link text-xs py-2 px-3 w-full justify-center"><i class="fas fa-rocket"></i> Request Demo</button></div></div></div>
             </div>
             <div class="mt-10 glass p-5 rounded-2xl border border-slate-800">
                 <div class="grid grid-cols-3 md:grid-cols-6 gap-3 text-center">
-                    <div><div class="text-xl md:text-2xl font-bold text-sky-400">12+</div><div class="text-xs text-slate-400">Live Systems</div></div>
-                    <div><div class="text-xl md:text-2xl font-bold text-purple-400">100+</div><div class="text-xs text-slate-400">Modules</div></div>
+                    <div><div class="text-xl md:text-2xl font-bold text-sky-400">14+</div><div class="text-xs text-slate-400">Live Systems</div></div>
+                    <div><div class="text-xl md:text-2xl font-bold text-purple-400">120+</div><div class="text-xs text-slate-400">Modules</div></div>
                     <div><div class="text-xl md:text-2xl font-bold text-emerald-400">Free</div><div class="text-xs text-slate-400">To Test</div></div>
                     <div><div class="text-xl md:text-2xl font-bold text-pink-400">2hr</div><div class="text-xs text-slate-400">Response</div></div>
                     <div><div class="text-xl md:text-2xl font-bold text-orange-400">100%</div><div class="text-xs text-slate-400">Satisfaction</div></div>
@@ -737,8 +756,8 @@
             </div>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="glass rounded-2xl overflow-hidden border border-sky-500/30"><div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1576671081837-49000212a370?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"></div><div class="p-4"><h3 class="text-lg font-bold">Pharmacy System</h3><p class="text-slate-400 text-xs">Expiry tracking, supplier orders.</p><button onclick="showQuoteModal('Pharmacy System')" class="text-sky-400 text-sm font-bold mt-2 bg-transparent border-0">Request Demo →</button></div></div>
-                <div class="glass rounded-2xl overflow-hidden border border-purple-500/30"><div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1586016413664-864c0dd76f53?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"></div><div class="p-4"><h3 class="text-lg font-bold">Chemist System</h3><p class="text-slate-400 text-xs">Drug health monitoring.</p><button onclick="showQuoteModal('Chemist System')" class="text-purple-400 text-sm font-bold mt-2 bg-transparent border-0">Request Demo →</button></div></div>
-                <div class="glass rounded-2xl overflow-hidden border border-pink-500/30"><div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"></div><div class="p-4"><h3 class="text-lg font-bold">Boutique System</h3><p class="text-slate-400 text-xs">VIP loyalty, size tracking.</p><button onclick="showQuoteModal('Boutique System')" class="text-pink-400 text-sm font-bold mt-2 bg-transparent border-0">Request Demo →</button></div></div>
+                <div class="glass rounded-2xl overflow-hidden border border-orange-500/30"><div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"></div><div class="p-4"><h3 class="text-lg font-bold">Electrical POS</h3><p class="text-slate-400 text-xs">Warranty tracking, repairs.</p><button onclick="showQuoteModal('Electrical POS')" class="text-orange-400 text-sm font-bold mt-2 bg-transparent border-0">Request Demo →</button></div></div>
+                <div class="glass rounded-2xl overflow-hidden border border-teal-500/30"><div class="h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover"></div><div class="p-4"><h3 class="text-lg font-bold">Tenant Management</h3><p class="text-slate-400 text-xs">Rent collection, maintenance.</p><button onclick="showQuoteModal('Tenant Management')" class="text-teal-400 text-sm font-bold mt-2 bg-transparent border-0">Request Demo →</button></div></div>
             </div>
         </div>
     </section>
@@ -764,12 +783,12 @@
         </div>
     </section>
 
-    <!-- Contact Section with Personal Image -->
+    <!-- Contact Section with Personal Image (Fixed - head fully visible) -->
     <section id="contact" class="py-12">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="glass p-6 rounded-2xl border border-slate-800 text-center md:text-left">
-                    <img src="alex.png" alt="Alex Safari" class="profile-img w-full object-cover rounded-xl mb-4" onerror="this.src='https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
+                    <img src="alex.png" alt="Alex Safari - Founder" class="profile-img w-full object-cover object-top rounded-xl mb-4" onerror="this.src='https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'">
                     <h3 class="text-2xl font-bold mb-2">Alex Safari</h3>
                     <p class="text-sky-400 text-sm mb-3">Founder & Lead Software Engineer</p>
                     <p class="text-slate-400 text-sm">15+ years experience in enterprise software, system architecture, and technical leadership. Passionate about solving complex business problems through innovative technology solutions.</p>
