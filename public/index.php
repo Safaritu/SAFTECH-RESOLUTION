@@ -1,3 +1,26 @@
+<?php
+require_once __DIR__ . '/../includes/db.php';
+
+$formSuccess = false;
+$formError = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quote_submit'])) {
+    $name = trim($_POST['name'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $message = trim($_POST['message'] ?? '');
+    $projectInterest = trim($_POST['project_interest'] ?? '');
+
+    if ($name === '' || $email === '' || $message === '') {
+        $formError = 'Please fill in your name, email, and project details.';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $formError = 'Please enter a valid email address.';
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO quote_requests (name, email, project_interest, message) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$name, $email, $projectInterest, $message]);
+        $formSuccess = true;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -789,12 +812,23 @@
                     <h2 class="text-2xl md:text-4xl font-bold mt-2">Launch Your Project</h2>
                     <p class="text-slate-400 text-sm">We respond within 2 hours.</p>
                 </div>
-                <form action="mailto:saftechresolutions@gmail.com" method="post" enctype="text/plain">
+                <form method="POST" action="#quote">
+                    <?php if ($formSuccess): ?>
+                        <div class="mb-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-sm">
+                            Thanks! Your request has been received — we'll respond within 2 hours.
+                        </div>
+                    <?php elseif ($formError): ?>
+                        <div class="mb-4 p-4 rounded-xl bg-red-500/20 border border-red-500/40 text-red-300 text-sm">
+                            <?= htmlspecialchars($formError) ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="grid md:grid-cols-2 gap-4">
-                        <div><input type="text" name="Name" placeholder="Your Name" class="w-full bg-slate-950/50 border border-slate-800 p-3 rounded-xl text-sm"></div>
-                        <div><input type="email" name="Email" placeholder="Email" class="w-full bg-slate-950/50 border border-slate-800 p-3 rounded-xl text-sm"></div>
-                        <div class="md:col-span-2"><textarea name="Message" placeholder="Project details" class="w-full bg-slate-950/50 border border-slate-800 p-3 rounded-xl h-28 text-sm"></textarea></div>
+                        <div><input type="text" name="name" placeholder="Your Name" class="w-full bg-slate-950/50 border border-slate-800 p-3 rounded-xl text-sm" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"></div>
+                        <div><input type="email" name="email" placeholder="Email" class="w-full bg-slate-950/50 border border-slate-800 p-3 rounded-xl text-sm" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"></div>
+                        <div class="md:col-span-2"><textarea name="message" placeholder="Project details" class="w-full bg-slate-950/50 border border-slate-800 p-3 rounded-xl h-28 text-sm"><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea></div>
                     </div>
+                    <input type="hidden" name="project_interest" id="projectInterestField" value="">
+                    <input type="hidden" name="quote_submit" value="1">
                     <button type="submit" class="w-full mt-6 py-3 btn-primary rounded-xl font-bold">SEND REQUEST</button>
                 </form>
             </div>
@@ -854,6 +888,7 @@
 
         function showQuoteModal(projectName) {
             modalProjectName.textContent = `You're interested in ${projectName}.`;
+            document.getElementById('projectInterestField').value = projectName;
             modal.classList.add('active');
         }
 
