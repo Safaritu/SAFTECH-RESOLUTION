@@ -9,7 +9,6 @@ if (!isset($_SESSION['admin_id'])) {
 
 $error = '';
 
-// Delete
 if (isset($_GET['delete'])) {
     $stmt = $pdo->prepare("DELETE FROM projects WHERE id = ?");
     $stmt->execute([(int) $_GET['delete']]);
@@ -17,7 +16,6 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-// Add or Update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
     $category = trim($_POST['category'] ?? 'portfolio');
@@ -48,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Editing an existing one?
 $editRow = null;
 if (isset($_GET['edit'])) {
     $stmt = $pdo->prepare("SELECT * FROM projects WHERE id = ?");
@@ -56,7 +53,6 @@ if (isset($_GET['edit'])) {
     $editRow = $stmt->fetch();
 }
 
-// Filter by category
 $filter = $_GET['filter'] ?? 'all';
 if ($filter !== 'all') {
     $stmt = $pdo->prepare("SELECT * FROM projects WHERE category = ? ORDER BY sort_order");
@@ -65,103 +61,100 @@ if ($filter !== 'all') {
 } else {
     $projects = $pdo->query("SELECT * FROM projects ORDER BY category, sort_order")->fetchAll();
 }
+
+$pageTitle = 'Manage Projects';
+$totalCount = $pdo->query("SELECT COUNT(*) FROM projects")->fetchColumn();
+
+$catLabels = ['live_demo' => 'Live Demo', 'enterprise' => 'Enterprise', 'portfolio' => 'Portfolio'];
+$catColors = ['live_demo' => 'text-sky-300 bg-sky-500/15', 'enterprise' => 'text-purple-300 bg-purple-500/15', 'portfolio' => 'text-emerald-300 bg-emerald-500/15'];
+
+require __DIR__ . '/../../includes/admin_header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Manage Projects | Admin</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
-        table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 30px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 13px; }
-        th { background: #222; color: white; }
-        form.card { background: white; padding: 15px; border: 1px solid #ddd; max-width: 600px; }
-        form.card label { display: block; margin-top: 10px; font-size: 13px; font-weight: bold; }
-        form.card input[type=text], form.card textarea, form.card input[type=number], form.card select { width: 100%; padding: 6px; box-sizing: border-box; }
-        .error { color: red; }
-        .actions a { margin-right: 8px; font-size: 13px; }
-        .filters a { margin-right: 12px; }
-        .filters a.active { font-weight: bold; text-decoration: underline; }
-        .checkbox-row label { display: inline; font-weight: normal; margin-right: 15px; }
-        .checkbox-row input { width: auto; }
-    </style>
-</head>
-<body>
-    <p><a href="dashboard.php">&larr; Back to Dashboard</a></p>
-    <h1>Manage Projects</h1>
-    <?php if ($error): ?><p class="error"><?= htmlspecialchars($error) ?></p><?php endif; ?>
+<h1 class="text-2xl md:text-3xl font-bold mb-1">Manage Projects</h1>
+<p class="text-slate-400 text-sm mb-6"><?= $totalCount ?> total projects</p>
 
-    <p class="filters">
-        Filter: 
-        <a href="?filter=all" class="<?= $filter === 'all' ? 'active' : '' ?>">All (<?= count($pdo->query("SELECT id FROM projects")->fetchAll()) ?>)</a>
-        <a href="?filter=live_demo" class="<?= $filter === 'live_demo' ? 'active' : '' ?>">Live Demos</a>
-        <a href="?filter=enterprise" class="<?= $filter === 'enterprise' ? 'active' : '' ?>">Enterprise</a>
-        <a href="?filter=portfolio" class="<?= $filter === 'portfolio' ? 'active' : '' ?>">Portfolio</a>
-    </p>
+<div class="flex gap-2 mb-6 text-sm flex-wrap">
+    <a href="?filter=all" class="px-3 py-1.5 rounded-full <?= $filter === 'all' ? 'btn-primary font-semibold' : 'glass text-slate-400' ?>">All</a>
+    <a href="?filter=live_demo" class="px-3 py-1.5 rounded-full <?= $filter === 'live_demo' ? 'btn-primary font-semibold' : 'glass text-slate-400' ?>">Live Demos</a>
+    <a href="?filter=enterprise" class="px-3 py-1.5 rounded-full <?= $filter === 'enterprise' ? 'btn-primary font-semibold' : 'glass text-slate-400' ?>">Enterprise</a>
+    <a href="?filter=portfolio" class="px-3 py-1.5 rounded-full <?= $filter === 'portfolio' ? 'btn-primary font-semibold' : 'glass text-slate-400' ?>">Portfolio</a>
+</div>
 
-    <table>
-        <tr><th>Order</th><th>Title</th><th>Category</th><th>Label</th><th>Actions</th></tr>
-        <?php foreach ($projects as $p): ?>
-        <tr>
-            <td><?= $p['sort_order'] ?></td>
-            <td><?= htmlspecialchars($p['title']) ?></td>
-            <td><?= htmlspecialchars($p['category']) ?></td>
-            <td><?= htmlspecialchars($p['category_label']) ?></td>
-            <td class="actions">
-                <a href="?edit=<?= $p['id'] ?>">Edit</a>
-                <a href="?delete=<?= $p['id'] ?>" onclick="return confirm('Delete this project?')">Delete</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+<?php if ($error): ?><div class="mb-4 p-3 rounded-xl bg-red-500/15 border border-red-500/30 text-red-300 text-sm"><?= htmlspecialchars($error) ?></div><?php endif; ?>
 
-    <h2><?= $editRow ? 'Edit Project' : 'Add New Project' ?></h2>
-    <form class="card" method="POST">
-        <input type="hidden" name="id" value="<?= $editRow ? $editRow['id'] : '' ?>">
-        <label>Title</label>
-        <input type="text" name="title" value="<?= htmlspecialchars($editRow['title'] ?? '') ?>" required>
-
-        <label>Category</label>
-        <select name="category">
-            <?php $cats = ['live_demo' => 'Live Demo', 'enterprise' => 'Enterprise Solution', 'portfolio' => 'Portfolio']; ?>
-            <?php foreach ($cats as $val => $label): ?>
-                <option value="<?= $val ?>" <?= (($editRow['category'] ?? '') === $val) ? 'selected' : '' ?>><?= $label ?></option>
-            <?php endforeach; ?>
-        </select>
-
-        <label>Category label (Enterprise only, e.g. FINANCE, ERP, HR)</label>
-        <input type="text" name="category_label" value="<?= htmlspecialchars($editRow['category_label'] ?? '') ?>">
-
-        <label>Icon (Enterprise only, Font Awesome class, e.g. fa-coins)</label>
-        <input type="text" name="icon" value="<?= htmlspecialchars($editRow['icon'] ?? '') ?>">
-
-        <label>Tags (Enterprise only, comma-separated, e.g. Loans,Interest,Repayments)</label>
-        <input type="text" name="tags" value="<?= htmlspecialchars($editRow['tags'] ?? '') ?>">
-
-        <label>Color theme (Live Demo / Portfolio, e.g. sky, purple, orange, emerald, pink, teal)</label>
-        <input type="text" name="color_theme" value="<?= htmlspecialchars($editRow['color_theme'] ?? 'sky') ?>">
-
-        <label>Description</label>
-        <textarea name="description" rows="3"><?= htmlspecialchars($editRow['description'] ?? '') ?></textarea>
-
-        <label>Image URL</label>
-        <input type="text" name="image_path" value="<?= htmlspecialchars($editRow['image_path'] ?? '') ?>">
-
-        <label>Project URL (optional live link)</label>
-        <input type="text" name="project_url" value="<?= htmlspecialchars($editRow['project_url'] ?? '') ?>">
-
-        <label>Sort order</label>
-        <input type="number" name="sort_order" value="<?= htmlspecialchars($editRow['sort_order'] ?? 0) ?>">
-
-        <div class="checkbox-row" style="margin-top:10px;">
-            <label><input type="checkbox" name="is_live" <?= (!empty($editRow['is_live'])) ? 'checked' : '' ?>> Is Live Demo</label>
-            <label><input type="checkbox" name="is_featured" <?= (!empty($editRow['is_featured'])) ? 'checked' : '' ?>> Is Featured (Portfolio)</label>
+<div class="grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2">
+        <div class="glass rounded-2xl overflow-x-auto">
+            <table class="admin-table">
+                <tr><th>Order</th><th>Title</th><th>Category</th><th>Label</th><th></th></tr>
+                <?php foreach ($projects as $p): ?>
+                <tr>
+                    <td><?= $p['sort_order'] ?></td>
+                    <td class="font-semibold"><?= htmlspecialchars($p['title']) ?></td>
+                    <td><span class="px-2 py-1 rounded-full text-xs <?= $catColors[$p['category']] ?? '' ?>"><?= $catLabels[$p['category']] ?? htmlspecialchars($p['category']) ?></span></td>
+                    <td class="text-slate-400"><?= htmlspecialchars($p['category_label']) ?></td>
+                    <td class="whitespace-nowrap">
+                        <a href="?edit=<?= $p['id'] ?>&filter=<?= $filter ?>" class="text-sky-400 hover:underline mr-3">Edit</a>
+                        <a href="?delete=<?= $p['id'] ?>" onclick="return confirm('Delete this project?')" class="text-red-400 hover:underline">Delete</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                <?php if (!$projects): ?>
+                <tr><td colspan="5" class="text-center text-slate-500 py-8">No projects in this category yet.</td></tr>
+                <?php endif; ?>
+            </table>
         </div>
+    </div>
 
-        <br>
-        <button type="submit"><?= $editRow ? 'Update' : 'Add' ?> Project</button>
-        <?php if ($editRow): ?><a href="projects.php">Cancel</a><?php endif; ?>
-    </form>
-</body>
-</html>
+    <div>
+        <div class="glass rounded-2xl p-5">
+            <h2 class="font-bold mb-2"><?= $editRow ? 'Edit Project' : 'Add New Project' ?></h2>
+            <form method="POST">
+                <input type="hidden" name="id" value="<?= $editRow ? $editRow['id'] : '' ?>">
+
+                <label class="form-label">Title</label>
+                <input type="text" name="title" value="<?= htmlspecialchars($editRow['title'] ?? '') ?>" required>
+
+                <label class="form-label">Category</label>
+                <select name="category">
+                    <?php foreach ($catLabels as $val => $label): ?>
+                        <option value="<?= $val ?>" <?= (($editRow['category'] ?? '') === $val) ? 'selected' : '' ?>><?= $label ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+                <label class="form-label">Category label <span class="normal-case font-normal text-slate-500">(Enterprise only, e.g. FINANCE)</span></label>
+                <input type="text" name="category_label" value="<?= htmlspecialchars($editRow['category_label'] ?? '') ?>">
+
+                <label class="form-label">Icon <span class="normal-case font-normal text-slate-500">(Enterprise, Font Awesome class)</span></label>
+                <input type="text" name="icon" value="<?= htmlspecialchars($editRow['icon'] ?? '') ?>" placeholder="fa-coins">
+
+                <label class="form-label">Tags <span class="normal-case font-normal text-slate-500">(comma-separated)</span></label>
+                <input type="text" name="tags" value="<?= htmlspecialchars($editRow['tags'] ?? '') ?>" placeholder="Loans,Interest,Repayments">
+
+                <label class="form-label">Color theme</label>
+                <input type="text" name="color_theme" value="<?= htmlspecialchars($editRow['color_theme'] ?? 'sky') ?>" placeholder="sky, purple, orange...">
+
+                <label class="form-label">Description</label>
+                <textarea name="description" rows="3"><?= htmlspecialchars($editRow['description'] ?? '') ?></textarea>
+
+                <label class="form-label">Image URL</label>
+                <input type="text" name="image_path" value="<?= htmlspecialchars($editRow['image_path'] ?? '') ?>">
+
+                <label class="form-label">Project URL <span class="normal-case font-normal text-slate-500">(optional)</span></label>
+                <input type="text" name="project_url" value="<?= htmlspecialchars($editRow['project_url'] ?? '') ?>">
+
+                <label class="form-label">Sort order</label>
+                <input type="number" name="sort_order" value="<?= htmlspecialchars($editRow['sort_order'] ?? 0) ?>">
+
+                <div class="flex gap-4 mt-4 text-sm">
+                    <label class="flex items-center gap-2"><input type="checkbox" name="is_live" class="!w-auto" <?= (!empty($editRow['is_live'])) ? 'checked' : '' ?>> Is Live Demo</label>
+                    <label class="flex items-center gap-2"><input type="checkbox" name="is_featured" class="!w-auto" <?= (!empty($editRow['is_featured'])) ? 'checked' : '' ?>> Is Featured</label>
+                </div>
+
+                <button type="submit" class="w-full mt-5 py-2.5 btn-primary rounded-xl font-bold text-sm"><?= $editRow ? 'Update' : 'Add' ?> Project</button>
+                <?php if ($editRow): ?><a href="projects.php" class="block text-center text-xs text-slate-400 mt-3 hover:text-white">Cancel edit</a><?php endif; ?>
+            </form>
+        </div>
+    </div>
+</div>
+<?php require __DIR__ . '/../../includes/admin_footer.php'; ?>
