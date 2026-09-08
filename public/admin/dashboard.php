@@ -15,6 +15,6 @@ if (!isset($_SESSION['admin_id'])) {
 <body>
     <h1>Welcome, <?= htmlspecialchars($_SESSION['admin_username']) ?></h1>
     <p>This is your admin dashboard. We'll add bookings, services, and project management here next.</p>
-    <a href="quotes.php">View Quote Requests</a> &nbsp;&#124;&nbsp; <a href="logout.php">Log Out</a>
+    <a href="quotes.php">View Quote Requests</a> &nbsp;&#124;&nbsp; <a href="services.php">Manage Services</a> &nbsp;&#124;&nbsp; <a href="logout.php">Log Out</a>
 </body>
 </html>
