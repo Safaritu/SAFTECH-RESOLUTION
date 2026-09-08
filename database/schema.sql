@@ -51,3 +51,18 @@ CREATE TABLE quote_requests (
     status ENUM('new','contacted','closed') DEFAULT 'new',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Extended columns for dynamic cards (added later)
+ALTER TABLE projects
+  ADD COLUMN category VARCHAR(30) NOT NULL DEFAULT 'portfolio' AFTER title,
+  ADD COLUMN category_label VARCHAR(50) NULL AFTER category,
+  ADD COLUMN icon VARCHAR(50) NULL AFTER category_label,
+  ADD COLUMN tags VARCHAR(255) NULL AFTER icon,
+  ADD COLUMN color_theme VARCHAR(30) NULL DEFAULT 'sky' AFTER tags,
+  ADD COLUMN is_live TINYINT(1) DEFAULT 0 AFTER color_theme,
+  ADD COLUMN sort_order INT DEFAULT 0 AFTER is_live;
+
+ALTER TABLE services
+  ADD COLUMN icon VARCHAR(50) NULL AFTER description,
+  ADD COLUMN color_theme VARCHAR(30) NULL DEFAULT 'sky' AFTER icon,
+  ADD COLUMN sort_order INT DEFAULT 0 AFTER color_theme;
