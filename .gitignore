@@ -1,0 +1,8 @@
+# Environment / secrets
+config/db_credentials.php
+.env
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+*.log
