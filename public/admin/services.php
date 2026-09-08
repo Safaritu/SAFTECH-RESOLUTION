@@ -9,7 +9,6 @@ if (!isset($_SESSION['admin_id'])) {
 
 $error = '';
 
-// Delete
 if (isset($_GET['delete'])) {
     $stmt = $pdo->prepare("DELETE FROM services WHERE id = ?");
     $stmt->execute([(int) $_GET['delete']]);
@@ -17,7 +16,6 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
-// Add or Update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
     $description = trim($_POST['description'] ?? '');
@@ -42,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Editing an existing one?
 $editRow = null;
 if (isset($_GET['edit'])) {
     $stmt = $pdo->prepare("SELECT * FROM services WHERE id = ?");
@@ -50,64 +47,59 @@ if (isset($_GET['edit'])) {
     $editRow = $stmt->fetch();
 }
 
+$pageTitle = 'Manage Services';
 $services = $pdo->query("SELECT * FROM services ORDER BY sort_order")->fetchAll();
+
+require __DIR__ . '/../../includes/admin_header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Manage Services | Admin</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
-        table { width: 100%; border-collapse: collapse; background: white; margin-bottom: 30px; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; font-size: 14px; }
-        th { background: #222; color: white; }
-        form.card { background: white; padding: 15px; border: 1px solid #ddd; max-width: 500px; }
-        form.card label { display: block; margin-top: 10px; font-size: 13px; font-weight: bold; }
-        form.card input[type=text], form.card textarea, form.card input[type=number] { width: 100%; padding: 6px; box-sizing: border-box; }
-        .error { color: red; }
-        .actions a { margin-right: 8px; font-size: 13px; }
-    </style>
-</head>
-<body>
-    <p><a href="dashboard.php">&larr; Back to Dashboard</a></p>
-    <h1>Manage Services</h1>
-    <?php if ($error): ?><p class="error"><?= htmlspecialchars($error) ?></p><?php endif; ?>
+<h1 class="text-2xl md:text-3xl font-bold mb-1">Manage Services</h1>
+<p class="text-slate-400 text-sm mb-6"><?= count($services) ?> services</p>
+<?php if ($error): ?><div class="mb-4 p-3 rounded-xl bg-red-500/15 border border-red-500/30 text-red-300 text-sm"><?= htmlspecialchars($error) ?></div><?php endif; ?>
 
-    <table>
-        <tr><th>Order</th><th>Title</th><th>Icon</th><th>Color</th><th>Active</th><th>Actions</th></tr>
-        <?php foreach ($services as $s): ?>
-        <tr>
-            <td><?= $s['sort_order'] ?></td>
-            <td><?= htmlspecialchars($s['title']) ?></td>
-            <td><?= htmlspecialchars($s['icon']) ?></td>
-            <td><?= htmlspecialchars($s['color_theme']) ?></td>
-            <td><?= $s['is_active'] ? 'Yes' : 'No' ?></td>
-            <td class="actions">
-                <a href="?edit=<?= $s['id'] ?>">Edit</a>
-                <a href="?delete=<?= $s['id'] ?>" onclick="return confirm('Delete this service?')">Delete</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
+<div class="grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2">
+        <div class="glass rounded-2xl overflow-x-auto">
+            <table class="admin-table">
+                <tr><th>Order</th><th>Title</th><th>Icon</th><th>Color</th><th>Active</th><th></th></tr>
+                <?php foreach ($services as $s): ?>
+                <tr>
+                    <td><?= $s['sort_order'] ?></td>
+                    <td class="font-semibold"><?= htmlspecialchars($s['title']) ?></td>
+                    <td class="text-slate-400"><i class="fas <?= htmlspecialchars($s['icon']) ?>"></i> <?= htmlspecialchars($s['icon']) ?></td>
+                    <td><span class="px-2 py-1 rounded-full text-xs bg-<?= htmlspecialchars($s['color_theme']) ?>-500/15 text-<?= htmlspecialchars($s['color_theme']) ?>-300"><?= htmlspecialchars($s['color_theme']) ?></span></td>
+                    <td><?= $s['is_active'] ? '<span class="text-emerald-400">Yes</span>' : '<span class="text-slate-500">No</span>' ?></td>
+                    <td class="whitespace-nowrap">
+                        <a href="?edit=<?= $s['id'] ?>" class="text-sky-400 hover:underline mr-3">Edit</a>
+                        <a href="?delete=<?= $s['id'] ?>" onclick="return confirm('Delete this service?')" class="text-red-400 hover:underline">Delete</a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
 
-    <h2><?= $editRow ? 'Edit Service' : 'Add New Service' ?></h2>
-    <form class="card" method="POST">
-        <input type="hidden" name="id" value="<?= $editRow ? $editRow['id'] : '' ?>">
-        <label>Title</label>
-        <input type="text" name="title" value="<?= htmlspecialchars($editRow['title'] ?? '') ?>" required>
-        <label>Description</label>
-        <textarea name="description" rows="3"><?= htmlspecialchars($editRow['description'] ?? '') ?></textarea>
-        <label>Icon (Font Awesome class, e.g. fa-laptop-code)</label>
-        <input type="text" name="icon" value="<?= htmlspecialchars($editRow['icon'] ?? '') ?>">
-        <label>Color theme (e.g. sky, purple, orange, emerald, pink, teal)</label>
-        <input type="text" name="color_theme" value="<?= htmlspecialchars($editRow['color_theme'] ?? 'sky') ?>">
-        <label>Sort order</label>
-        <input type="number" name="sort_order" value="<?= htmlspecialchars($editRow['sort_order'] ?? 0) ?>">
-        <label><input type="checkbox" name="is_active" <?= (!$editRow || $editRow['is_active']) ? 'checked' : '' ?> style="width:auto;"> Active (shown on site)</label>
-        <br><br>
-        <button type="submit"><?= $editRow ? 'Update' : 'Add' ?> Service</button>
-        <?php if ($editRow): ?><a href="services.php">Cancel</a><?php endif; ?>
-    </form>
-</body>
-</html>
+    <div>
+        <div class="glass rounded-2xl p-5">
+            <h2 class="font-bold mb-2"><?= $editRow ? 'Edit Service' : 'Add New Service' ?></h2>
+            <form method="POST">
+                <input type="hidden" name="id" value="<?= $editRow ? $editRow['id'] : '' ?>">
+                <label class="form-label">Title</label>
+                <input type="text" name="title" value="<?= htmlspecialchars($editRow['title'] ?? '') ?>" required>
+                <label class="form-label">Description</label>
+                <textarea name="description" rows="3"><?= htmlspecialchars($editRow['description'] ?? '') ?></textarea>
+                <label class="form-label">Icon (Font Awesome class)</label>
+                <input type="text" name="icon" value="<?= htmlspecialchars($editRow['icon'] ?? '') ?>" placeholder="fa-laptop-code">
+                <label class="form-label">Color theme</label>
+                <input type="text" name="color_theme" value="<?= htmlspecialchars($editRow['color_theme'] ?? 'sky') ?>" placeholder="sky, purple, orange...">
+                <label class="form-label">Sort order</label>
+                <input type="number" name="sort_order" value="<?= htmlspecialchars($editRow['sort_order'] ?? 0) ?>">
+                <label class="flex items-center gap-2 mt-4 text-sm">
+                    <input type="checkbox" name="is_active" class="!w-auto" <?= (!$editRow || $editRow['is_active']) ? 'checked' : '' ?>> Active (shown on site)
+                </label>
+                <button type="submit" class="w-full mt-5 py-2.5 btn-primary rounded-xl font-bold text-sm"><?= $editRow ? 'Update' : 'Add' ?> Service</button>
+                <?php if ($editRow): ?><a href="services.php" class="block text-center text-xs text-slate-400 mt-3 hover:text-white">Cancel edit</a><?php endif; ?>
+            </form>
+        </div>
+    </div>
+</div>
+<?php require __DIR__ . '/../../includes/admin_footer.php'; ?>
