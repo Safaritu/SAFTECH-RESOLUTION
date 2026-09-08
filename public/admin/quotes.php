@@ -7,7 +7,6 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
-// Handle status update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
     $id = (int) $_POST['id'];
     $status = $_POST['status'];
@@ -20,29 +19,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_status'])) {
     exit;
 }
 
+$pageTitle = 'Quote Requests';
 $stmt = $pdo->query("SELECT * FROM quote_requests ORDER BY created_at DESC");
 $quotes = $stmt->fetchAll();
+
+$statusStyles = [
+    'new' => 'bg-red-500/15 text-red-300 border-red-500/30',
+    'contacted' => 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+    'closed' => 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+];
+
+require __DIR__ . '/../../includes/admin_header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Quote Requests | Admin</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
-        table { width: 100%; border-collapse: collapse; background: white; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }
-        th { background: #222; color: white; }
-        .status-new { color: #b91c1c; font-weight: bold; }
-        .status-contacted { color: #b45309; font-weight: bold; }
-        .status-closed { color: #15803d; font-weight: bold; }
-        select { padding: 4px; }
-    </style>
-</head>
-<body>
-    <p><a href="dashboard.php">&larr; Back to Dashboard</a></p>
-    <h1>Quote Requests (<?= count($quotes) ?>)</h1>
-    <table>
+<h1 class="text-2xl md:text-3xl font-bold mb-1">Quote Requests</h1>
+<p class="text-slate-400 text-sm mb-6"><?= count($quotes) ?> total submissions</p>
+
+<div class="glass rounded-2xl overflow-x-auto">
+    <table class="admin-table">
         <tr>
             <th>Date</th>
             <th>Name</th>
@@ -53,25 +46,28 @@ $quotes = $stmt->fetchAll();
         </tr>
         <?php foreach ($quotes as $q): ?>
         <tr>
-            <td><?= htmlspecialchars($q['created_at']) ?></td>
-            <td><?= htmlspecialchars($q['name']) ?></td>
+            <td class="whitespace-nowrap text-slate-400"><?= htmlspecialchars($q['created_at']) ?></td>
+            <td class="font-semibold"><?= htmlspecialchars($q['name']) ?></td>
             <td><?= htmlspecialchars($q['email']) ?></td>
-            <td><?= htmlspecialchars($q['project_interest']) ?></td>
-            <td><?= nl2br(htmlspecialchars($q['message'])) ?></td>
+            <td><?= htmlspecialchars($q['project_interest'] ?: '—') ?></td>
+            <td class="max-w-xs"><?= nl2br(htmlspecialchars($q['message'])) ?></td>
             <td>
-                <span class="status-<?= htmlspecialchars($q['status']) ?>"><?= htmlspecialchars($q['status']) ?></span>
-                <form method="POST" style="margin-top:5px;">
+                <span class="inline-block px-2 py-1 rounded-full text-xs border mb-2 <?= $statusStyles[$q['status']] ?? '' ?>"><?= htmlspecialchars($q['status']) ?></span>
+                <form method="POST" class="flex gap-2 items-center">
                     <input type="hidden" name="id" value="<?= $q['id'] ?>">
-                    <select name="status">
+                    <select name="status" class="!w-auto !py-1 !text-xs">
                         <option value="new" <?= $q['status'] === 'new' ? 'selected' : '' ?>>New</option>
                         <option value="contacted" <?= $q['status'] === 'contacted' ? 'selected' : '' ?>>Contacted</option>
                         <option value="closed" <?= $q['status'] === 'closed' ? 'selected' : '' ?>>Closed</option>
                     </select>
-                    <button type="submit" name="update_status" value="1">Update</button>
+                    <button type="submit" name="update_status" value="1" class="text-xs px-3 py-1 btn-primary rounded-lg font-semibold">Update</button>
                 </form>
             </td>
         </tr>
         <?php endforeach; ?>
+        <?php if (!$quotes): ?>
+        <tr><td colspan="6" class="text-center text-slate-500 py-8">No quote requests yet.</td></tr>
+        <?php endif; ?>
     </table>
-</body>
-</html>
+</div>
+<?php require __DIR__ . '/../../includes/admin_footer.php'; ?>
