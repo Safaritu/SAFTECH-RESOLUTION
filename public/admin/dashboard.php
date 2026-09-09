@@ -9,7 +9,7 @@ if (!isset($_SESSION['admin_id'])) {
 
 $pageTitle = 'Dashboard';
 $newQuotes = $pdo->query("SELECT COUNT(*) FROM quote_requests WHERE status='new'")->fetchColumn();
-$totalQuotes = $pdo->query("SELECT COUNT(*) FROM quote_requests")->fetchColumn();
+$pendingBookings = $pdo->query("SELECT COUNT(*) FROM bookings WHERE status='pending'")->fetchColumn();
 $totalServices = $pdo->query("SELECT COUNT(*) FROM services")->fetchColumn();
 $totalProjects = $pdo->query("SELECT COUNT(*) FROM projects")->fetchColumn();
 
@@ -24,8 +24,8 @@ require __DIR__ . '/../../includes/admin_header.php';
         <div class="text-xs text-slate-400 mt-1">New Quote Requests</div>
     </div>
     <div class="glass rounded-2xl p-5">
-        <div class="text-3xl font-bold text-indigo-400"><?= $totalQuotes ?></div>
-        <div class="text-xs text-slate-400 mt-1">Total Quote Requests</div>
+        <div class="text-3xl font-bold text-amber-400"><?= $pendingBookings ?></div>
+        <div class="text-xs text-slate-400 mt-1">Pending Bookings</div>
     </div>
     <div class="glass rounded-2xl p-5">
         <div class="text-3xl font-bold text-emerald-400"><?= $totalServices ?></div>
@@ -37,11 +37,16 @@ require __DIR__ . '/../../includes/admin_header.php';
     </div>
 </div>
 
-<div class="grid sm:grid-cols-3 gap-4">
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
     <a href="quotes.php" class="glass rounded-2xl p-6 card-hover block hover:border-sky-400 transition">
         <i class="fas fa-envelope-open-text text-sky-400 text-2xl mb-3"></i>
         <h3 class="font-bold mb-1">Quote Requests</h3>
         <p class="text-xs text-slate-400">Review and respond to client inquiries.</p>
+    </a>
+    <a href="bookings.php" class="glass rounded-2xl p-6 card-hover block hover:border-sky-400 transition">
+        <i class="fas fa-calendar-check text-amber-400 text-2xl mb-3"></i>
+        <h3 class="font-bold mb-1">Bookings</h3>
+        <p class="text-xs text-slate-400">Confirm and manage service bookings.</p>
     </a>
     <a href="services.php" class="glass rounded-2xl p-6 card-hover block hover:border-sky-400 transition">
         <i class="fas fa-briefcase text-emerald-400 text-2xl mb-3"></i>

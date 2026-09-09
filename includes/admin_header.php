@@ -44,6 +44,7 @@ function navClass($page, $current) {
             <nav class="flex gap-5 text-sm font-medium">
                 <a href="dashboard.php" class="pb-1 <?= navClass('dashboard.php', $currentPage) ?>">Dashboard</a>
                 <a href="quotes.php" class="pb-1 <?= navClass('quotes.php', $currentPage) ?>">Quote Requests</a>
+                <a href="bookings.php" class="pb-1 <?= navClass('bookings.php', $currentPage) ?>">Bookings</a>
                 <a href="services.php" class="pb-1 <?= navClass('services.php', $currentPage) ?>">Services</a>
                 <a href="projects.php" class="pb-1 <?= navClass('projects.php', $currentPage) ?>">Projects</a>
             </nav>
