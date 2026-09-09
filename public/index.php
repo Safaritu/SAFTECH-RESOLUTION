@@ -567,7 +567,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quote_submit'])) {
             <a href="#portfolio" onclick="toggleMobileMenu()"><i class="fas fa-folder-open mr-3 text-sky-400"></i>Portfolio</a>
             <a href="#networking" onclick="toggleMobileMenu()"><i class="fas fa-network-wired mr-3 text-sky-400"></i>Networking</a>
             <a href="#contact" onclick="toggleMobileMenu()"><i class="fas fa-envelope mr-3 text-sky-400"></i>Contact</a>
-            <a href="#quote" class="mt-4 px-4 py-2 btn-primary rounded-full text-center" onclick="toggleMobileMenu()">Get a Quote</a>
+            <a href="book.php" class="mt-2 px-4 py-2 rounded-full text-center border border-sky-500/50">Book Now</a> <a href="#quote" class="mt-4 px-4 py-2 btn-primary rounded-full text-center" onclick="toggleMobileMenu()">Get a Quote</a>
         </div>
     </div>
     <div class="menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()"></div>
@@ -588,7 +588,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['quote_submit'])) {
                 <a href="#portfolio" class="hover:text-sky-400 transition">Portfolio</a>
                 <a href="#networking" class="hover:text-sky-400 transition">Networking</a>
                 <a href="#contact" class="hover:text-sky-400 transition">Contact</a>
-                <a href="#quote" class="px-5 py-2 btn-primary rounded-full text-white text-xs uppercase tracking-wider font-bold">Get a Quote</a>
+                <a href="book.php" class="px-5 py-2 rounded-full text-white text-xs uppercase tracking-wider font-bold border border-sky-500/50 hover:bg-sky-500/10">Book Now</a> <a href="#quote" class="px-5 py-2 btn-primary rounded-full text-white text-xs uppercase tracking-wider font-bold">Get a Quote</a>
             </div>
 
             <div class="hamburger md:hidden" id="hamburger" onclick="toggleMobileMenu()">
